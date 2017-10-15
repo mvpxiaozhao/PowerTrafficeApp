@@ -16,6 +16,7 @@ import com.example.powertrafficeapp.fragment.carinfor.Carinfor_3;
 public class CarimfromentActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
     String hh = "rtyttyyyr";
     String hsadasdh = "asdas";
+    String aa = null;
     private RadioGroup RadiogroupF8;
     private LinearLayout LinearF8Xin;
     private TextView text_name;
