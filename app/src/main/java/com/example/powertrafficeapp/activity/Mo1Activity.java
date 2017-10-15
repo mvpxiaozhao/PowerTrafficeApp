@@ -1,3 +1,4 @@
+
 package com.example.powertrafficeapp.activity;
 
 import android.content.Context;
@@ -26,7 +27,10 @@ public class Mo1Activity extends AppCompatActivity {
     List<Map<String, String>> groupData = new ArrayList<Map<String, String>>();//大组成员
     List<List<Map<String, String>>> childData = new ArrayList<List<Map<String, String>>>();//小组成员
     ExAdapter adapter;
-    ExpandableListView exList;//可扩展的ListView
+    ExpandableListView exList;//可扩展的List
+    
+    String ff="fefiurif";
+    
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
