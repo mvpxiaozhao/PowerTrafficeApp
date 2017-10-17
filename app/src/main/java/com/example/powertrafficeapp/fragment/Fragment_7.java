@@ -153,20 +153,16 @@ public class Fragment_7 extends Fragment implements RadioGroup.OnCheckedChangeLi
 
         }
     }
-
     class MychartAdaptere extends FragmentPagerAdapter {
         ArrayList<Fragment> list;
-
         public MychartAdaptere(FragmentManager fm, ArrayList<Fragment> chart) {
             super(fm);
             list = chart;
         }
-
         @Override
         public Fragment getItem(int position) {
             return list.get(position);
         }
-
         @Override
         public int getCount() {
             return fragments.size();

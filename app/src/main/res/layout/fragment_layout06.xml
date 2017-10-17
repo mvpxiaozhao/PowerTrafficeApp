@@ -99,15 +99,53 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linerrrr"
+        android:layout_width="match_parent"
+        android:layout_height="196dp"
+        android:orientation="horizontal"></LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/chart_f"
+        <RadioGroup
+            android:id="@+id/grour"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ffffff" />
-    </LinearLayout>
+            android:gravity="center"
+            android:orientation="horizontal">
 
+            <RadioButton
+                android:id="@+id/ridebutton1_f6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:button="@null"
+                android:text="二氧化碳" />
+
+            <RadioButton
+                android:id="@+id/ridebutton2_f6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:button="@null"
+                android:text="湿度" />
+
+            <RadioButton
+                android:id="@+id/ridebutton3_f6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:button="@null"
+                android:text="温度" />
+
+            <RadioButton
+                android:id="@+id/ridebutton4_f6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:text="粒度" />
+        </RadioGroup>
+    </LinearLayout>
 </LinearLayout>

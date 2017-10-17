@@ -177,7 +177,6 @@ public class lukou_fragment_1 extends Fragment {
                         String hong = dfee.getString("RedTime");
                         String huang = dfee.getString("YellowTime");
                         String lv = dfee.getString("GreenTime");
-
                         relativeLayout = LayoutInflater.from(getActivity()).inflate(R.layout.table, null);
                         MyTableTextView txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
                         txt.setText(String.valueOf(3));
@@ -248,7 +247,6 @@ public class lukou_fragment_1 extends Fragment {
                         String hong = dfee.getString("RedTime");
                         String huang = dfee.getString("YellowTime");
                         String lv = dfee.getString("GreenTime");
-
                         relativeLayout = LayoutInflater.from(getActivity()).inflate(R.layout.table, null);
                         MyTableTextView txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
                         txt.setText(String.valueOf(5));

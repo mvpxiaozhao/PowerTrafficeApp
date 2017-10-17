@@ -57,6 +57,7 @@ public class Chart_Fragment_3 extends Fragment {
         description.setXOffset(200f);
         description.setYOffset(200f);
         PieDataSet dataSet = new PieDataSet(entries, "三年级一班");
+
         mPieChart.setDescription(description);
         ArrayList<Integer> colors = new ArrayList<Integer>();
         for (int c : ColorTemplate.VORDIPLOM_COLORS)

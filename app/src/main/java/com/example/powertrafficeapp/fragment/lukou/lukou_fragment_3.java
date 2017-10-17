@@ -8,11 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -29,61 +27,21 @@ import com.example.powertrafficeapp.util.Util;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.List;
-
 
 /**
  * Created by dell on 2017/08/30.
  */
 
 public class lukou_fragment_3 extends Fragment {
-    int ddd;
     int[] arrayw = {1, 2, 3, 4, 5};
-    List<String> list;
-    ArrayAdapter adapter;
     String urlHost;
     int honglu = 1;
-    int d = 0;
-    String hong1;
-    String huang1;
-    String lv1;
-    String hong2;
-    String huang2;
-    String lv2;
-    String hong3;
-    String huang3;
-    String lv3;
-    String hong4;
-    String huang4;
-    String lv4;
-    String hong5;
-    String huang5;
-    String lv5;
+    String hong1, huang1, lv1, hong2, huang2, lv2, hong3, huang3, lv3, hong4, huang4, lv4, hong5, huang5, lv5;
+    int arraylu[];
+    int arrayhuang[];
+    int arrayhong[];
     Button button;
     CheckBox check;
-    private Button buttonF3Refer;
-    private Button buttonF3Pl;
-    private TextView textViewH1;
-    private TextView textViewL1;
-    private TextView textViewHu1;
-    private TextView textView57;
-    private TextView textViewH2;
-    private TextView textViewL2;
-    private TextView textViewHu2;
-    private TextView textView58;
-    private TextView textViewH3;
-    private TextView textViewL3;
-    private TextView textViewHu3;
-    private TextView textView56;
-    private TextView textViewH4;
-    private TextView textViewL4;
-    private TextView textViewHu4;
-    private TextView textView54;
-    private TextView textViewH5;
-    private TextView textViewL5;
-    private TextView textViewHu5;
-    private Button buttonBaocunF3;
-    private Button buttonQusiaoF3;
     private Button buttonCuo;
     private LinearLayout Ralativeee;
     private UrlBean urlBean;
@@ -96,12 +54,10 @@ public class lukou_fragment_3 extends Fragment {
         View view = inflater.inflate(R.layout.lukou_fragment_3, container, false);
         return view;
     }
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Ralativeee = (LinearLayout) getActivity().findViewById(R.id.Ralativeee);
-        urlBean = Util.loadSetting(getContext());
         relativeLayout = LayoutInflater.from(getActivity()).inflate(R.layout.table, null);
         MyTableTextView title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
         title.setText(name[0]);
@@ -126,6 +82,7 @@ public class lukou_fragment_3 extends Fragment {
         button = (Button) relativeLayout.findViewById(R.id.btn_shezhi);
         button.setVisibility(View.GONE);
         Ralativeee.addView(relativeLayout);
+        urlBean = Util.loadSetting(getContext());
         urlHost = "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/transportservice/type/jason/action/GetTrafficLightConfigAction.do";
         JSONObject object = new JSONObject();
         try {
@@ -135,205 +92,6 @@ public class lukou_fragment_3 extends Fragment {
         }
         getAllCarrrValue(urlHost, object);
     }
-
-    private void getAllCarValue(String urlHostAction, JSONObject params) {
-        RequestQueue mQueue = Volley.newRequestQueue(getContext());
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, urlHostAction, params, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                // TODO Auto-generated method stu
-                Log.i("TAG volley", response.toString());
-                String str = response.toString();
-                if (honglu == 1) {
-                    try {
-                        JSONObject df = new JSONObject(str);
-                        String dsd = df.getString("serverinfo");
-                        JSONObject dfee = new JSONObject(dsd);
-                        String hong = dfee.getString("RedTime");
-                        String huang = dfee.getString("YellowTime");
-                        String lv = dfee.getString("GreenTime");
-                        relativeLayout = LayoutInflater.from(getActivity()).inflate(R.layout.table, null);
-                        MyTableTextView txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
-                        txt.setText(String.valueOf(1));
-                        txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
-                        txt.setText(hong);
-
-                        txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
-                        txt.setText(huang);
-                        txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
-                        txt.setText(lv);
-                        check = (CheckBox) relativeLayout.findViewById(R.id.checkbox);
-                        check.isChecked();
-                        button = (Button) relativeLayout.findViewById(R.id.btn_shezhi);
-                        button.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                dialoge();
-                                Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        button.setText(" 设置 ");
-                        Ralativeee.addView(relativeLayout);
-                        Log.i("TAG volley", dsd);
-                        shujue();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else if (honglu == 2) {
-                    try {
-                        JSONObject df = new JSONObject(str);
-                        String dsd = df.getString("serverinfo");
-                        JSONObject dfee = new JSONObject(dsd);
-                        String hong = dfee.getString("RedTime");
-                        String huang = dfee.getString("YellowTime");
-                        String lv = dfee.getString("GreenTime");
-                        relativeLayout = LayoutInflater.from(getActivity()).inflate(R.layout.table, null);
-                        MyTableTextView txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
-                        txt.setText(String.valueOf(2));
-                        txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
-                        txt.setText(hong);
-                        txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
-                        txt.setText(huang);
-                        txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
-                        txt.setText(lv);
-                        check = (CheckBox) relativeLayout.findViewById(R.id.checkbox);
-                        check.isChecked();
-                        button = (Button) relativeLayout.findViewById(R.id.btn_shezhi);
-                        button.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                dialoge();
-                                Toast.makeText(getActivity(), "2", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        button.setText(" 设置 ");
-                        Ralativeee.addView(relativeLayout);
-                        Log.i("TAG volley", dsd);
-                        shujue();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                } else if (honglu == 3) {
-                    try {
-                        JSONObject df = new JSONObject(str);
-                        String dsd = df.getString("serverinfo");
-                        JSONObject dfee = new JSONObject(dsd);
-                        String hong = dfee.getString("RedTime");
-                        String huang = dfee.getString("YellowTime");
-                        String lv = dfee.getString("GreenTime");
-
-                        relativeLayout = LayoutInflater.from(getActivity()).inflate(R.layout.table, null);
-                        MyTableTextView txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
-                        txt.setText(String.valueOf(3));
-                        txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
-                        txt.setText(hong);
-                        txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
-                        txt.setText(huang);
-                        txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
-                        txt.setText(lv);
-                        check = (CheckBox) relativeLayout.findViewById(R.id.checkbox);
-                        check.isChecked();
-                        button = (Button) relativeLayout.findViewById(R.id.btn_shezhi);
-                        button.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                dialoge();
-                                Toast.makeText(getActivity(), "3", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        button.setText(" 设置 ");
-                        Ralativeee.addView(relativeLayout);
-                        Log.i("TAG volley", dsd);
-                        shujue();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                } else if (honglu == 4) {
-                    try {
-                        JSONObject df = new JSONObject(str);
-                        String dsd = df.getString("serverinfo");
-                        JSONObject dfee = new JSONObject(dsd);
-                        String hong = dfee.getString("RedTime");
-                        String huang = dfee.getString("YellowTime");
-                        String lv = dfee.getString("GreenTime");
-                        relativeLayout = LayoutInflater.from(getActivity()).inflate(R.layout.table, null);
-                        MyTableTextView txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
-                        txt.setText(String.valueOf(4));
-                        txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
-                        txt.setText(hong);
-                        txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
-                        txt.setText(huang);
-                        txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
-                        txt.setText(lv);
-                        check = (CheckBox) relativeLayout.findViewById(R.id.checkbox);
-                        check.isChecked();
-                        button = (Button) relativeLayout.findViewById(R.id.btn_shezhi);
-                        button.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                dialoge();
-                                Toast.makeText(getActivity(), "4", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        button.setText(" 设置 ");
-                        Ralativeee.addView(relativeLayout);
-                        Log.i("TAG volley", dsd);
-                        shujue();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                } else if (honglu == 5) {
-                    try {
-                        JSONObject df = new JSONObject(str);
-                        String dsd = df.getString("serverinfo");
-                        JSONObject dfee = new JSONObject(dsd);
-                        String hong = dfee.getString("RedTime");
-                        String huang = dfee.getString("YellowTime");
-                        String lv = dfee.getString("GreenTime");
-
-                        relativeLayout = LayoutInflater.from(getActivity()).inflate(R.layout.table, null);
-                        MyTableTextView txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
-                        txt.setText(String.valueOf(5));
-                        txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
-                        txt.setText(hong);
-                        txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
-                        txt.setText(huang);
-                        txt = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
-                        txt.setText(lv);
-                        check = (CheckBox) relativeLayout.findViewById(R.id.checkbox);
-                        check.isChecked();
-                        button = (Button) relativeLayout.findViewById(R.id.btn_shezhi);
-                        button.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                dialoge();
-                                Toast.makeText(getActivity(), "5", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        button.setText(" 设置 ");
-                        Ralativeee.addView(relativeLayout);
-                        Log.i("TAG volley", dsd);
-                        shujue();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // TODO Auto-generated method stub
-                Toast.makeText(getContext(), "失败", Toast.LENGTH_SHORT).show();
-                Log.i("TAG volley", error.toString());
-            }
-        });
-        mQueue.add(jsonObjectRequest);
-    }
-
     private void getAllCarrrValue(String urlHostAction, JSONObject params) {
         RequestQueue mQueue = Volley.newRequestQueue(getContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, urlHostAction, params, new Response.Listener<JSONObject>() {
@@ -401,47 +159,47 @@ public class lukou_fragment_3 extends Fragment {
                         hong5 = dfee.getString("RedTime");
                         huang5 = dfee.getString("YellowTime");
                         lv5 = dfee.getString("GreenTime");
-                        int s1 = Integer.parseInt(lv1);
-                        int s2 = Integer.parseInt(lv2);
-                        int s3 = Integer.parseInt(lv3);
-                        int s4 = Integer.parseInt(lv4);
-                        int s5 = Integer.parseInt(lv5);
-                        int[] array = {s1, s2, s3, s4, s5};
-                        for (int e = 0; e < (array.length - 1); e++) {
-                            for (int j = e + 1; j < array.length; j++) {
-                                if (array[e] > array[j]) {
-                                    int zhong = array[e];
-                                    array[e] = array[j];
-                                    array[j] = zhong;
-                                    int hong = arrayw[e];
+                        int lu1 = Integer.parseInt(lv1);
+                        int lu2 = Integer.parseInt(lv2);
+                        int lu3 = Integer.parseInt(lv3);
+                        int lu4 = Integer.parseInt(lv4);
+                        int lu5 = Integer.parseInt(lv5);
+                        int hu1 = Integer.parseInt(huang1);
+                        int hu2 = Integer.parseInt(huang2);
+                        int hu3 = Integer.parseInt(huang3);
+                        int hu4 = Integer.parseInt(huang4);
+                        int hu5 = Integer.parseInt(huang5);
+                        int ho1 = Integer.parseInt(hong1);
+                        int ho2 = Integer.parseInt(hong2);
+                        int ho3 = Integer.parseInt(hong3);
+                        int ho4 = Integer.parseInt(hong4);
+                        int ho5 = Integer.parseInt(hong5);
+                        arraylu = new int[]{lu1, lu2, lu3, lu4, lu5};
+                        arrayhuang = new int[]{hu1, hu2, hu3, hu4, hu5};
+                        arrayhong = new int[]{ho1, ho2, ho3, ho4, ho5};
+                        for (int e = 0; e < (arraylu.length - 1); e++) {
+                            for (int j = e + 1; j < arraylu.length; j++) {
+                                if (arraylu[e] > arraylu[j]) {
+                                    int lu = arraylu[e];
+                                    arraylu[e] = arraylu[j];
+                                    arraylu[j] = lu;
+                                    int huang = arrayhuang[e];
+                                    arrayhuang[e] = arrayhuang[j];
+                                    arrayhuang[j] = huang;
+                                    int hong = arrayhong[e];
+                                    arrayhong[e] = arrayhong[j];
+                                    arrayhong[j] = hong;
+                                    int pai = arrayw[e];
                                     arrayw[e] = arrayw[j];
-                                    arrayw[j] = hong;
+                                    arrayw[j] = pai;
                                 }
                             }
                         }
-                        urlBean = Util.loadSetting(getContext());
-                        urlHost = "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/transportservice/type/jason/action/GetTrafficLightConfigAction.do";
-                        JSONObject object = new JSONObject();
-                        try {
-                            object.put("TrafficLightId", arrayw[0]);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        honglu = arrayw[0];
-                        Log.i("dasdsssss", String.valueOf(object));
-                        Log.i("asdasdkkkk", String.valueOf(arrayw[0]) + "#" + String.valueOf(arrayw[1]) + "#" + String.valueOf(arrayw[2])
-                                + "#" + String.valueOf(arrayw[3]) + "#" + String.valueOf(arrayw[4]));
-                        Log.i("asdasdkkkk", String.valueOf(array[0]) + "#" + String.valueOf(array[1]) + "#" + String.valueOf(array[2]) + "#"
-                                + String.valueOf(array[3]) + "#" + String.valueOf(array[4]));
-                        getAllCarValue(urlHost, object);
-
-
+                        jiashuju();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -456,8 +214,6 @@ public class lukou_fragment_3 extends Fragment {
 
     public void shuju() {
         honglu++;
-        urlBean = Util.loadSetting(getContext());
-        urlHost = "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/transportservice/type/jason/action/GetTrafficLightConfigAction.do";
         JSONObject object = new JSONObject();
         try {
             object.put("TrafficLightId", honglu);
@@ -467,29 +223,6 @@ public class lukou_fragment_3 extends Fragment {
         Log.i("dasds", String.valueOf(object));
         getAllCarrrValue(urlHost, object);
     }
-
-    public void shujue() {
-        d++;
-        if (d <= 4) {
-            urlBean = Util.loadSetting(getContext());
-            urlHost = "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/transportservice/type/jason/action/GetTrafficLightConfigAction.do";
-            JSONObject object = new JSONObject();
-            try {
-                object.put("TrafficLightId", arrayw[d]);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            honglu = arrayw[d];
-            Log.i("dasdssssss", String.valueOf(honglu));
-            Log.i("dasdsss", String.valueOf(object));
-
-            getAllCarValue(urlHost, object);
-        } else {
-            return;
-        }
-
-    }
-
     public void dialoge() {
         final Dialog dialoge = new Dialog(getActivity());
         Log.i("TAG volley", "sdfsdfsdfsdfsdfsdfs");
@@ -505,5 +238,36 @@ public class lukou_fragment_3 extends Fragment {
         });
         dialoge.show();
 
+    }
+
+    private void jiashuju() {
+        for (int i = 0; i < arrayw.length; i++) {
+
+            relativeLayout = LayoutInflater.from(getActivity()).inflate(R.layout.table, null);
+            MyTableTextView title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
+            title.setText(String.valueOf(arrayw[i]));
+            title.setTextColor(Color.BLUE);
+            title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
+            title.setText(String.valueOf(arrayhong[i]));
+            title.setTextColor(Color.BLUE);
+            title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
+            title.setText(String.valueOf(arrayhuang[i]));
+            title.setTextColor(Color.BLUE);
+            title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
+            title.setText(String.valueOf(arraylu[i]));
+            title.setTextColor(Color.BLUE);
+            check = (CheckBox) relativeLayout.findViewById(R.id.checkbox);
+            check.isChecked();
+            button = (Button) relativeLayout.findViewById(R.id.btn_shezhi);
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    dialoge();
+                    Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
+                }
+            });
+            button.setText(" 设置 ");
+            Ralativeee.addView(relativeLayout);
+        }
     }
 }

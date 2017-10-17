@@ -154,8 +154,7 @@ public class Fragment_1 extends Fragment {
                             long time = System.currentTimeMillis();
                             System.currentTimeMillis();
                             Date date = new Date(time);
-                            SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒 EEEE");
-                            format = new SimpleDateFormat("MM月dd日HH时mm分ss秒");
+                            SimpleDateFormat format = new SimpleDateFormat("MM月dd日HH时mm分ss秒");
                             String timee = format.format(date);
                             String carner = "鲁Q11111";
                             Carinformation people = new Carinformation(name, carMoney, timee, carner);
@@ -174,8 +173,7 @@ public class Fragment_1 extends Fragment {
                             String name = carname[1];
                             long time = System.currentTimeMillis();
                             Date date = new Date(time);
-                            SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒 EEEE");
-                            format = new SimpleDateFormat("MM月dd日HH时mm分ss秒");
+                            SimpleDateFormat format = new SimpleDateFormat("MM月dd日HH时mm分ss秒");
                             String timee = format.format(date);
                             String carner = "鲁Q22222";
                             Carinformation people = new Carinformation(name, carMoney, timee, carner);
@@ -193,8 +191,7 @@ public class Fragment_1 extends Fragment {
                             String name = carname[2];
                             long time = System.currentTimeMillis();
                             Date date = new Date(time);
-                            SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒 EEEE");
-                            format = new SimpleDateFormat("MM月dd日HH时mm分ss秒");
+                            SimpleDateFormat format = new SimpleDateFormat("MM月dd日HH时mm分ss秒");
                             String timee = format.format(date);
                             String carner = "鲁Q33333";
                             Carinformation people = new Carinformation(name, carMoney, timee, carner);
@@ -213,8 +210,7 @@ public class Fragment_1 extends Fragment {
                             String name = carname[3];
                             long time = System.currentTimeMillis();
                             Date date = new Date(time);
-                            SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒 EEEE");
-                            format = new SimpleDateFormat("MM月dd日HH时mm分ss秒");
+                            SimpleDateFormat format = new SimpleDateFormat("MM月dd日HH时mm分ss秒");
                             String timee = format.format(date);
                             String carner = "鲁Q44444";
                             Carinformation people = new Carinformation(name, carMoney, timee, carner);
@@ -358,7 +354,6 @@ public class Fragment_1 extends Fragment {
                 netFlag = 0;
                 getAllCarValue(urlHostAction, strJson);
             } else {
-                //	contentAdapter.positionset(int1,int2,int3,int4);
                 int ddd = Util.loadSettingtime(getActivity());
                 contentAdapter = new ContentAdapter(getContext(), arrayListItem, mLitener, dd, ddd);
                 listCarInfo.setAdapter(contentAdapter);

@@ -33,20 +33,17 @@ public class Fragment_8 extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         button_f8 = (Button) getActivity().findViewById(R.id.button_f8_cha);
         editText_f8 = (EditText) getActivity().findViewById(R.id.ed_f8_name);
-
         button_f8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 final String editText = editText_f8.getText().toString().trim();
                 if (editText.equals("")) {
                     Toast.makeText(getActivity(), "姓名不能为空", Toast.LENGTH_SHORT).show();
-
                 } else {
                     Intent intent1 = new Intent(getActivity(), CarimfromentActivity.class);
                     intent1.putExtra("key", editText);
                     startActivity(intent1);
                 }
-
             }
         });
         super.onActivityCreated(savedInstanceState);

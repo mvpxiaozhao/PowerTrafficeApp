@@ -27,13 +27,11 @@ public class Fragment_3 extends Fragment {
     List<String> list;
     ArrayAdapter adapter;
     private Spinner spinnerF3;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_layout03, container, false);
         return view;
     }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -71,7 +69,6 @@ public class Fragment_3 extends Fragment {
                         break;
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
