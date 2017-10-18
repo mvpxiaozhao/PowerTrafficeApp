@@ -354,7 +354,7 @@ public class Fragment_1 extends Fragment {
                 netFlag = 0;
                 getAllCarValue(urlHostAction, strJson);
             } else {
-                int ddd = Util.loadSettingtime(getActivity());
+                int ddd = Util.loadSettingtime("chabao", "cha", getActivity());
                 contentAdapter = new ContentAdapter(getContext(), arrayListItem, mLitener, dd, ddd);
                 listCarInfo.setAdapter(contentAdapter);
 

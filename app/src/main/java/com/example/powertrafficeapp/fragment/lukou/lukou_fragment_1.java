@@ -27,6 +27,9 @@ import com.example.powertrafficeapp.util.Util;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by dell on 2017/08/30.
@@ -38,6 +41,9 @@ public class lukou_fragment_1 extends Fragment {
     Button button;
     CheckBox check;
     int dd[] = {1, 2, 3, 4, 5};
+    List<String> lhong = new ArrayList<>();
+    List<String> lhuang = new ArrayList<>();
+    List<String> llv = new ArrayList<>();
     private Button buttonF3Refer;
     private Button buttonF3Pl;
     private Button buttonCuo;
@@ -108,7 +114,10 @@ public class lukou_fragment_1 extends Fragment {
                     String hong = dfee.getString("RedTime");
                     String huang = dfee.getString("YellowTime");
                     String lv = dfee.getString("GreenTime");
-                    shuju(hong, huang, lv);
+                    lhong.add(hong);
+                    lhuang.add(huang);
+                    llv.add(lv);
+                    shuju();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -125,32 +134,8 @@ public class lukou_fragment_1 extends Fragment {
         mQueue.add(jsonObjectRequest);
     }
 
-    public void shuju(String hong, String huang, String lv) {
-        relativeLayout = LayoutInflater.from(getActivity()).inflate(R.layout.table, null);
-        MyTableTextView title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
-        title.setText(String.valueOf(dd[honglu - 1]));
-        title.setTextColor(Color.BLUE);
-        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
-        title.setText(String.valueOf(hong));
-        title.setTextColor(Color.BLUE);
-        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
-        title.setText(String.valueOf(huang));
-        title.setTextColor(Color.BLUE);
-        title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
-        title.setText(String.valueOf(lv));
-        title.setTextColor(Color.BLUE);
-        check = (CheckBox) relativeLayout.findViewById(R.id.checkbox);
-        check.isChecked();
-        button = (Button) relativeLayout.findViewById(R.id.btn_shezhi);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialoge();
-                Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
-            }
-        });
-        button.setText(" 设置 ");
-        Ralativeee.addView(relativeLayout);
+    public void shuju() {
+
         honglu++;
         if (honglu < 6) {
             JSONObject object = new JSONObject();
@@ -161,6 +146,8 @@ public class lukou_fragment_1 extends Fragment {
             }
             Log.i("dasds", String.valueOf(object));
             getAllCarValue(urlHost, object);
+        } else {
+            sdf();
         }
     }
 
@@ -174,10 +161,60 @@ public class lukou_fragment_1 extends Fragment {
             @Override
             public void onClick(View view) {
                 dialoge.dismiss();
-
             }
         });
         dialoge.show();
+    }
+
+    public void sdf() {
+        for (int i = 0; i < lhuang.size(); i++) {
+            relativeLayout = LayoutInflater.from(getActivity()).inflate(R.layout.table, null);
+            MyTableTextView title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
+            title.setText(String.valueOf(i));
+            title.setTextColor(Color.BLUE);
+            title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
+            title.setText(String.valueOf(lhong.get(i)));
+            title.setTextColor(Color.BLUE);
+            title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_3);
+            title.setText(String.valueOf(lhuang.get(i)));
+            title.setTextColor(Color.BLUE);
+            title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_4);
+            title.setText(String.valueOf(llv.get(i)));
+            title.setTextColor(Color.BLUE);
+            check = (CheckBox) relativeLayout.findViewById(R.id.checkbox);
+            check.isChecked();
+            button = (Button) relativeLayout.findViewById(R.id.btn_shezhi);
+            final int finalI = i;
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch (finalI) {
+                        case 0:
+                            Log.i("dsad", "0");
+                            break;
+                        case 1:
+                            Log.i("dsad", "1");
+                            break;
+                        case 2:
+                            Log.i("dsad", "2");
+                            break;
+                        case 3:
+                            Log.i("dsad", "3");
+                            break;
+                        case 4:
+                            Log.i("dsad", "3");
+                            break;
+
+                    }
+                }
+            });
+            button.setText(" 设置 ");
+
+            Log.i("dsad", String.valueOf(button.getId()));
+            Ralativeee.addView(relativeLayout);
+            Log.i("dsad", String.valueOf(relativeLayout.getId()));
+        }
+
     }
 }
 

@@ -46,7 +46,7 @@ public class Carinfor_3 extends Fragment {
         editTextF8C3 = (EditText) getActivity().findViewById(R.id.editText_f8_c3);
         textView43 = (TextView) getActivity().findViewById(R.id.textView43);
         buttonF8C3 = (Button) getActivity().findViewById(R.id.button_f8_c3);
-        int ert = Util.loadSettingtime(getActivity());
+        int ert = Util.loadSettingtime("chabao", "cha", getActivity());
         String err = String.valueOf(ert);
         textViewF8C3.setText(err);
         buttonF8C3.setOnClickListener(new View.OnClickListener() {
@@ -58,7 +58,7 @@ public class Carinfor_3 extends Fragment {
                 } else {
                     int time = Integer.parseInt(ert);
                     Toast.makeText(getActivity(), "设置成功", Toast.LENGTH_SHORT).show();
-                    Util.saveSettingtime(time, getActivity());
+                    Util.saveSettingtime("chabao", "cha", time, getActivity());
                 }
             }
         });

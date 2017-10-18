@@ -254,6 +254,30 @@ public class lukou_fragment_3 extends Fragment {
             check = (CheckBox) relativeLayout.findViewById(R.id.checkbox);
             check.isChecked();
             button = (Button) relativeLayout.findViewById(R.id.btn_shezhi);
+            final int finalI = i;
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    switch (finalI) {
+                        case 0:
+                            Log.i("dsad", "0");
+                            break;
+                        case 1:
+                            Log.i("dsad", "1");
+                            break;
+                        case 2:
+                            Log.i("dsad", "2");
+                            break;
+                        case 3:
+                            Log.i("dsad", "3");
+                            break;
+                        case 4:
+                            Log.i("dsad", "3");
+                            break;
+
+                    }
+                }
+            });
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

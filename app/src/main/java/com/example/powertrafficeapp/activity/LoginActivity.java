@@ -43,6 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         textView_tile.setText("登录页面");
         checkBox_r = (CheckBox) findViewById(R.id.checkBox);
         urlBean = Util.loadSetting("name", "user", "pass", this);
+        editText_username.setText(urlBean.getUrl());
+        editText_userpwd.setText(urlBean.getPort());
         Button button_ok = (Button) findViewById(R.id.button_ok);
         button_ok.setOnClickListener(new Button.OnClickListener() {
 
