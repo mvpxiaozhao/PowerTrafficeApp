@@ -4,12 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="平台上有违章车辆和无违章车辆的占比统"
-        android:textSize="18sp" />
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/mPieChart"

@@ -36,19 +36,21 @@ public class Fragment_7 extends Fragment implements RadioGroup.OnCheckedChangeLi
     private ViewPager VpF7Chart;
     private TextView textviewF7biaoming;
     private RadioGroup radioGroupF7;
+    private TextView text11111;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_layout07, container, false);
         return view;
     }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         VpF7Chart = (ViewPager) getActivity().findViewById(R.id.Vp_F7_chart);
         textviewF7biaoming = (TextView) getActivity().findViewById(R.id.textView_F7_biaoming);
         radioGroupF7 = (RadioGroup) getActivity().findViewById(R.id.RadioGroup_F);
+        text11111 = (TextView) getActivity().findViewById(R.id.text11111);
         fragments = new ArrayList<Fragment>();
         Fragment chart1 = new Chart_Fragment_1();
         Fragment chart2 = new Chart_Fragment_2();
@@ -66,14 +68,12 @@ public class Fragment_7 extends Fragment implements RadioGroup.OnCheckedChangeLi
         fragments.add(chart7);
         mychart = new MychartAdaptere(getFragmentManager(), fragments);
         VpF7Chart.setAdapter(mychart);
-
         VpF7Chart.addOnPageChangeListener(new Mylistner());
         radioGroupF7.setOnCheckedChangeListener(this);
         VpF7Chart.setCurrentItem(0);
         radioGroupF7.check(R.id.radioButton_F7_1);
         textviewF7biaoming.setText(biaoming[0]);
     }
-
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
         int current = 0;
@@ -104,15 +104,12 @@ public class Fragment_7 extends Fragment implements RadioGroup.OnCheckedChangeLi
             VpF7Chart.setCurrentItem(current);
             textviewF7biaoming.setText(biaoming[current]);
         }
-
     }
 
     public class Mylistner implements ViewPager.OnPageChangeListener {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
         }
-
         @Override
         public void onPageSelected(int position) {
             int current = VpF7Chart.getCurrentItem();
@@ -120,37 +117,43 @@ public class Fragment_7 extends Fragment implements RadioGroup.OnCheckedChangeLi
                 case 0:
                     radioGroupF7.check(R.id.radioButton_F7_1);
                     textviewF7biaoming.setText(biaoming[current]);
+                    text11111.setText("显示平台上年龄群体车辆违章的占比统计表");
                     break;
                 case 1:
                     radioGroupF7.check(R.id.radioButton_F7_2);
                     textviewF7biaoming.setText(biaoming[current]);
+                    text11111.setText("显示平台上年龄群体车辆违章的占比统计表");
                     break;
                 case 2:
                     radioGroupF7.check(R.id.radioButton_F7_3);
                     textviewF7biaoming.setText(biaoming[current]);
+                    text11111.setText("显示平台上年龄群体车辆违章的占比统计表");
                     break;
                 case 3:
                     radioGroupF7.check(R.id.radioButton_F7_4);
                     textviewF7biaoming.setText(biaoming[current]);
+                    text11111.setText("显示平台上年龄群体车辆违章的占比统计表");
                     break;
                 case 4:
                     radioGroupF7.check(R.id.radioButton_F7_5);
                     textviewF7biaoming.setText(biaoming[current]);
+                    text11111.setText("显示平台上年龄群体车辆违章的占比统计表");
                     break;
                 case 5:
                     radioGroupF7.check(R.id.radioButton_F7_6);
                     textviewF7biaoming.setText(biaoming[current]);
+                    text11111.setText("显示平台上年龄群体车辆违章的占比统计表");
                     break;
                 case 6:
                     radioGroupF7.check(R.id.radioButton_F7_7);
                     textviewF7biaoming.setText(biaoming[current]);
+                    text11111.setText("显示平台上年龄群体车辆违章的占比统计表");
                     break;
             }
         }
 
         @Override
         public void onPageScrollStateChanged(int state) {
-
         }
     }
     class MychartAdaptere extends FragmentPagerAdapter {

@@ -108,7 +108,6 @@ public class lukou_fragment_3 extends Fragment {
                         hong1 = dfee.getString("RedTime");
                         huang1 = dfee.getString("YellowTime");
                         lv1 = dfee.getString("GreenTime");
-
                         shuju();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -121,7 +120,6 @@ public class lukou_fragment_3 extends Fragment {
                         hong2 = dfee.getString("RedTime");
                         huang2 = dfee.getString("YellowTime");
                         lv2 = dfee.getString("GreenTime");
-
                         shuju();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -147,7 +145,6 @@ public class lukou_fragment_3 extends Fragment {
                         huang4 = dfee.getString("YellowTime");
                         lv4 = dfee.getString("GreenTime");
                         shuju();
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -237,9 +234,7 @@ public class lukou_fragment_3 extends Fragment {
             }
         });
         dialoge.show();
-
     }
-
     private void jiashuju() {
         for (int i = 0; i < arrayw.length; i++) {
 

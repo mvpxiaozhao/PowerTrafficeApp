@@ -65,7 +65,6 @@ public class Fragment_f6_c3 extends Fragment {
             public String getFormattedValue(float v, AxisBase axisBase) {
                 return "0";
             }
-
             @Override
             public int getDecimalDigits() {
                 return 0;
@@ -85,12 +84,9 @@ public class Fragment_f6_c3 extends Fragment {
         linec3.setData(lineData);
         handler.postDelayed(rongc3, 1000);
     }
-
     class Rongc3 implements Runnable {
-
         @Override
         public void run() {
-
             xVals.add(String.valueOf(ss * 3));
             random = new Random();//随机数
             int profit = random.nextInt(100);
@@ -101,10 +97,8 @@ public class Fragment_f6_c3 extends Fragment {
             xAxis.setValueFormatter(new IAxisValueFormatter() {
                 @Override
                 public String getFormattedValue(float v, AxisBase axisBase) {
-
                     return xVals.get((int) v % xVals.size());
                 }
-
                 @Override
                 public int getDecimalDigits() {
                     return 0;
@@ -128,17 +122,12 @@ public class Fragment_f6_c3 extends Fragment {
             description.setText("公司前半年财务报表(单位：万元)");
             linec3.setDescription(description);
             Collections.sort(intyy);
-            Log.i("ajsdhaksdhkashd", String.valueOf(intyy.get(intyy.size() - 1)));
             textF6C3.setText("温度最大值" + String.valueOf(intyy.get(intyy.size() - 1)) + "     ");
             if (ss > 20) {
-                int ee = 0;
                 handler.removeCallbacks(rongc3);
-                Collections.sort(intyy);
-                Log.i("ajsdhaksdhkashd", String.valueOf(intyy.get(intyy.size() - 1)));
             } else {
                 handler.postDelayed(rongc3, 1000);
             }
-
         }
     }
 }

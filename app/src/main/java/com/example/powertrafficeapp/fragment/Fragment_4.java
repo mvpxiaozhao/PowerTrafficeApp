@@ -29,7 +29,6 @@ public class Fragment_4 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_layout04, container, false);
         return view;
     }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

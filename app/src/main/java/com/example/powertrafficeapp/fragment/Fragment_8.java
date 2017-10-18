@@ -22,13 +22,11 @@ import com.example.powertrafficeapp.activity.CarimfromentActivity;
 public class Fragment_8 extends Fragment {
     private Button button_f8;
     private EditText editText_f8;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_layout08, container, false);
         return view;
     }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         button_f8 = (Button) getActivity().findViewById(R.id.button_f8_cha);

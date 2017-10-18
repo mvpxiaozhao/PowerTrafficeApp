@@ -60,7 +60,6 @@ public class Fragment_3 extends Fragment {
                         String datadd = (String) spinnerF3.getItemAtPosition(i);//从spinner中获取被选择的数据
                         Toast.makeText(getActivity(), datadd, Toast.LENGTH_SHORT).show();
                         getFragmentManager().beginTransaction().replace(R.id.sdsadfsdas, new lukou_fragment_3()).commit();
-
                         break;
                     case 3:
                         String dataddd = (String) spinnerF3.getItemAtPosition(i);//从spinner中获取被选择的数据

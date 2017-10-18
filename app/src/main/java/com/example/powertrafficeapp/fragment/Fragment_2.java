@@ -50,6 +50,7 @@ public class Fragment_2 extends Fragment {
     List<Map<String, Object>> groupData = new ArrayList<>();//大组成员
     List<List<Map<String, Object>>> childData = new ArrayList<>();//小组成员
     UrlBean urlBean;
+    String urlHost;
     private ImageView mImageViewF2Tubiao;
     private TextView mTextViewBuy;
     private TextView mTextViewF2Time1;
@@ -94,7 +95,7 @@ public class Fragment_2 extends Fragment {
         mF2Expandable = (ExpandableListView) getActivity().findViewById(R.id.F2_Expandable);
 
         urlBean = Util.loadSetting(getContext());
-        String urlHost = "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/transportservice/type/jason/action/GetBusStationInfo.do";
+        urlHost = "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/transportservice/type/jason/action/GetBusStationInfo.do";
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("BusStationId", id);
@@ -103,17 +104,13 @@ public class Fragment_2 extends Fragment {
         }
         pus = 1;
         getAllCarValue(urlHost, jsonObject);
-        //List<Map<String, String>>  = new ArrayList<Map<String, String>>();
     }
-
     private void getAllCarValue(String urlHostAction, JSONObject params) {
         RequestQueue mQueue = Volley.newRequestQueue(getContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, urlHostAction, params, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 // TODO Auto-generated method stu
-                Log.i("TAG volley", response.toString());
-                Log.i("rrrr", response.optString("serverinfo"));
                 String str = response.optString("serverinfo");
                 if (pus == 1) {
                     try {
@@ -172,8 +169,6 @@ public class Fragment_2 extends Fragment {
     }
 
     public void car() {
-        urlBean = Util.loadSetting(getContext());
-        String urlHost = "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/transportservice/type/jason/action/GetBusStationInfo.do";
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("BusStationId", 2);
@@ -219,7 +214,6 @@ public class Fragment_2 extends Fragment {
             goundl.put(key2, "2号（101）人");
             goundl.put(key3, t2 + "分钟");
             goundl.put(key4, "距离" + d2 + "m");
-
             son.add(goundl);
             goundl = new HashMap<>();
             goundl.put(key2, "1号（101）人");
@@ -262,7 +256,6 @@ public class Fragment_2 extends Fragment {
         mF2Expandable.setGroupIndicator(null);//不设置大组指示器图标，因为我们自定义设置了
         mF2Expandable.setDivider(null);//设置图片可拉伸的
     }
-
     class Listadpter extends BaseExpandableListAdapter {
         Context context;
 

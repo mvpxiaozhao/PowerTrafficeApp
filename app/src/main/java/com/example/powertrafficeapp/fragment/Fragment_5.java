@@ -372,7 +372,6 @@ public class Fragment_5 extends Fragment {
                             fragment5You.setBackgroundResource(R.drawable.f5_lelf3);
                             fragment5You.setText("环城高速");
                         } else if (dff6 == 3) {
-
                             fragment5You.setBackgroundResource(R.drawable.f5_lelf4);
                             fragment5You.setText("环城高速");
                         } else if (dff6 == 4) {
@@ -426,7 +425,6 @@ public class Fragment_5 extends Fragment {
             return;
         }
     }
-
     class Runnable implements java.lang.Runnable {
         @Override
         public void run() {

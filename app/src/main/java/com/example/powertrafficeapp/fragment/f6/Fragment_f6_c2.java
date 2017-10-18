@@ -50,7 +50,6 @@ public class Fragment_f6_c2 extends Fragment {
         View view = inflater.inflate(R.layout.f6_c2, container, false);
         return view;
     }
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);

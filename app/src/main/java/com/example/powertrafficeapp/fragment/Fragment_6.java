@@ -170,11 +170,12 @@ public class Fragment_6 extends Fragment {
         description.setText("温度变化表");
         lineChart.setHighlightPerDragEnabled(true);//设置高亮
         lineChart.getAxisRight().setDrawGridLines(true);
-        lineChart.getXAxis().setDrawGridLines(false);
+        lineChart.getAxisLeft().setDrawGridLines(true);
+        lineChart.getXAxis().setDrawGridLines(true);
         lineChart.setDescription(description);//设置图表描述的内容位置，字体等等
         lineChart.getXAxis().setPosition(XAxis.XAxisPosition.TOP);//设置X轴的显示位置，通过XAxisPosition枚举类型来设置
         lineChart.getAxisRight().setEnabled(false);//关闭右边的Y轴，因为默认有两条，左边一条，右边一条，MPAndroidChart中有setEnabled方法的元素基本上都是使能的作用
-        lineChart.getAxisLeft().setEnabled(true);//关闭右边的Y轴，因为默认有两条，左边一条，右边一条，MPAndroidChart中有setEnabled方法的元素基本上都是使能的作用
+        lineChart.getAxisLeft().setEnabled(false);//关闭右边的Y轴，因为默认有两条，左边一条，右边一条，MPAndroidChart中有setEnabled方法的元素基本上都是使能的作用
         lineChart.animateY(3000);//动画效果，MPAndroidChart中还有很多动画效果可以挖掘
     }
 }

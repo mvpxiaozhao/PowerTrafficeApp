@@ -1,17 +1,28 @@
 package com.example.powertrafficeapp.fragment.Chart_Fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.powertrafficeapp.R;
+import com.example.powertrafficeapp.util.MyMarkerView;
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -20,70 +31,71 @@ import java.util.Random;
  */
 
 public class Chart_Fragment_5 extends Fragment {
-    String week[] = {"昨天", "今天", "明天", "周五", "周六", "周日", "周一"};
-    private BarChart chart;
-    private LineChart lineChart;
+
+    private BarChart chart_f5;
     private Random random;
-    private LineData data1;
-    private LineDataSet dataSet1;
+    private BarData data;
+    private BarDataSet dataSet;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.chart_fragment_layout5, container, false);
         return view;
     }
-//
-//    @Override
-//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        lineChart=(LineChart) getActivity().findViewById(R.id.chart3);
-//        LineChart();
-//
-//    }
-//    public  void LineChart(){
-//        ArrayList<String> xeVals = new ArrayList<>();
-//        ArrayList<Entry> yVals = new ArrayList<>();
-//        random = new Random();//产生随机数字
-//
-//        for(int i = 0 ; i<week.length; i++) {
-//            float x = random.nextInt(50);//获取value值
-//            yVals.add(new Entry(x, i));//创建Entry并且添加到Y值的list中，Y轴的值，一个entry代表一个显示的值
-//            xeVals.add(week[i]);//横坐标显示xxx月
-//        }
-//
-//        dataSet1 = new LineDataSet(yVals, "温度");//创建数据集并设置标签
-//        dataSet1.setColors(ColorTemplate.COLORFUL_COLORS);//设置数据集显示的颜色，预支颜色模版ColorTemplate，也可以设置单一颜色和colors
-//        dataSet1.setHighlightEnabled(true);//设置高亮
-//        dataSet1.setValueTextColor(Color.BLUE);//设置Value值的显示文字颜色，字体大小和字体种类，这里我没有添加对应字体可以自己修改
-//        dataSet1.setValueTextSize(10.0f);
-//        dataSet1.setValueTypeface(null);
-//        data1 = new LineData(xeVals, dataSet1);//创建LineData,x轴List和Y轴数据集为参数
-//
-//        lineChart.setData(data1);//给图表添加数据
-//        lineChart.setDescription("温度变化表");//设置图表描述的内容位置，字体等等
-//        lineChart.setDescriptionColor(Color.BLACK);
-//        lineChart.setDescriptionTextSize(15f);
-//        lineChart.setDescriptionPosition(540, 40);
-//
-//        lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);//设置X轴的显示位置，通过XAxisPosition枚举类型来设置
-//        //   lineChart.getXAxis().setAxisMinValue(0.0f);//设置X轴的最小值
-//        lineChart.getAxisRight().setEnabled(false);//关闭右边的Y轴，因为默认有两条，左边一条，右边一条，MPAndroidChart中有setEnabled方法的元素基本上都是使能的作用
-//        lineChart.animateY(3000);//动画效果，MPAndroidChart中还有很多动画效果可以挖掘
-//
-////当值被选中的时候，执行操作显示一个Toast
-//        lineChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-//
-//            @Override
-//            public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-//                // TODO Auto-generated method stub
-//                Toast.makeText(getActivity(), String.valueOf(e.getVal()), Toast.LENGTH_SHORT).show();
-//            }
-//
-//            @Override
-//            public void onNothingSelected() {
-//                // TODO Auto-generated method stub
-//
-//            }
-//        });
-//    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        chart_f5 = (BarChart) getActivity().findViewById(R.id.chart_f5);
+        barchart();
+
+    }
+
+    public void barchart() {
+        final String yuefen[] = {"一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"};
+        final ArrayList<BarEntry> entries = new ArrayList<>();//显示条目
+        final ArrayList<String> xVals = new ArrayList<String>();//横坐标标签
+        random = new Random();//随机数
+        for (int i = 0; i < 12; i++) {
+            int profit = random.nextInt(100);
+            entries.add(new BarEntry(i, profit));
+            xVals.add((i + 1) + "月");
+        }
+        XAxis xAxis = chart_f5.getXAxis();
+        xAxis.setDrawAxisLine(true);
+        xAxis.setDrawGridLines(false);
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float v, AxisBase axisBase) {
+                return yuefen[(int) v];
+            }
+
+            @Override
+            public int getDecimalDigits() {
+                return 0;
+            }
+        });
+        chart_f5.getAxisRight().setEnabled(false);//关闭右边的Y轴，因为默认有两条，左边一条，右边一条，MPAndroidChart中有setEnabled方法的元素基本上都是使能的作用
+        chart_f5.getAxisRight().setDrawAxisLine(false);
+        dataSet = new BarDataSet(entries, "温度变化表");
+        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);//颜色模板
+        data = new BarData(dataSet);
+        chart_f5.setData(data);
+        chart_f5.animateY(3000);  //设置Y方向上动画animateY(int time);
+        //图表描述
+        MyMarkerView mv = new MyMarkerView(getActivity(), R.layout.textview);
+        chart_f5.setMarker(mv);
+        Description description = new Description();
+        description.setText("温度变化表(单位:摄氏度)");
+        chart_f5.setDescription(description);
+        chart_f5.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
+            @Override
+            public void onValueSelected(Entry entry, Highlight highlight) {
+            }
+
+            @Override
+            public void onNothingSelected() {
+            }
+        });
+    }
 }

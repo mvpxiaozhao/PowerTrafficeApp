@@ -18,7 +18,9 @@
             android:screenOrientation="reverseLandscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <data></data>
+
+                <data />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -28,6 +30,9 @@
         <activity
             android:name=".activity.CarimfromentActivity"
             android:screenOrientation="reverseLandscape" />
+        <activity
+            android:name=".activity.MainuserActivity"
+            android:screenOrientation="reverseLandscape"></activity>
     </application>
 
 </manifest>

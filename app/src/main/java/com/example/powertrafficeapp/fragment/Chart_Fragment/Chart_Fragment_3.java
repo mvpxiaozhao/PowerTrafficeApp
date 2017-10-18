@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import com.example.powertrafficeapp.R;
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -31,13 +30,11 @@ public class Chart_Fragment_3 extends Fragment {
     Random random;
     String week[] = {"昨天", "今天", "明天", "周五", "周六", "周日", "周一"};
     private PieChart mPieChart;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.chart_fragment_layout3, container, false);
         return view;
     }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -51,27 +48,8 @@ public class Chart_Fragment_3 extends Fragment {
         entries.add(new PieEntry(20, "满分"));
         entries.add(new PieEntry(30, "及格"));
         entries.add(new PieEntry(10, "不及格"));
-        //设置数据
-        Description description = new Description();
-        description.setText("三年级一班成绩表");
-        description.setXOffset(200f);
-        description.setYOffset(200f);
         PieDataSet dataSet = new PieDataSet(entries, "三年级一班");
-
-        mPieChart.setDescription(description);
-        ArrayList<Integer> colors = new ArrayList<Integer>();
-        for (int c : ColorTemplate.VORDIPLOM_COLORS)
-            colors.add(c);
-        for (int c : ColorTemplate.JOYFUL_COLORS)
-            colors.add(c);
-        for (int c : ColorTemplate.COLORFUL_COLORS)
-            colors.add(c);
-        for (int c : ColorTemplate.LIBERTY_COLORS)
-            colors.add(c);
-        for (int c : ColorTemplate.PASTEL_COLORS)
-            colors.add(c);
-        colors.add(ColorTemplate.getHoloBlue());
-        dataSet.setColors(colors);
+        dataSet.setColors(getColors());
         PieData data = new PieData(dataSet);
         data.setValueTextSize(11f);
         data.setValueTextColor(Color.WHITE);
@@ -85,5 +63,15 @@ public class Chart_Fragment_3 extends Fragment {
         l.setXEntrySpace(10f);
         l.setYEntrySpace(10f);
         l.setYOffset(10f);
+    }
+
+    private int[] getColors() {
+        int stacksize = 4;
+        //有尽可能多的颜色每项堆栈值
+        int[] colors = new int[stacksize];
+        for (int i = 0; i < colors.length; i++) {
+            colors[i] = ColorTemplate.MATERIAL_COLORS[i];
+        }
+        return colors;
     }
 }

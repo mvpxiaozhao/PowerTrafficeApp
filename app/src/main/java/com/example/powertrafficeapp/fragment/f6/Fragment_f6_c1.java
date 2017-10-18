@@ -15,7 +15,6 @@ import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -48,7 +47,6 @@ public class Fragment_f6_c1 extends Fragment {
         View view = inflater.inflate(R.layout.f6_c1, container, false);
         return view;
     }
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -86,10 +84,8 @@ public class Fragment_f6_c1 extends Fragment {
     }
 
     class Rong implements Runnable {
-
         @Override
         public void run() {
-
             xVals.add(String.valueOf(ss * 3));
             random = new Random();//随机数
             int profit = random.nextInt(100);
@@ -110,8 +106,6 @@ public class Fragment_f6_c1 extends Fragment {
                 }
             });
             ss++;
-            YAxis rightAxis = barchart1.getAxisRight();
-            rightAxis.setSpaceMin(0f);
             xAxis.setAxisLineWidth(3f);
             xAxis.setTextSize(10f);
             xAxis.setDrawGridLines(true);//设置x轴上每个点对应的线  

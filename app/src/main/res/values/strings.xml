@@ -14,15 +14,14 @@
 "本系统的主要功能包括我的账户、账单管理、红绿灯管理、违章视频、公交查询、实时环境和车位查询等。</string>
 
 
-    <string name="res_left_wodezhanghu">模块1</string>
-    <string name="res_left_zhanghuguanli">模块2</string>
-    <string name="res_left_honglvdengguanli">模块3</string>
-    <string name="res_left_wodezhanghu4">模块4</string>
-    <string name="res_left_zhanghuguanli5">模块5</string>
-    <string name="res_left_honglvdengguanli6">模块6</string>
-    <string name="res_left_wodezhanghu7">模块7</string>
-    <string name="res_left_zhanghuguanli8">模块8</string>
-    <string name="res_left_honglvdengguanli9">模块9</string>
+    <string name="res_left_wodezhanghu">账户管理</string>
+    <string name="res_left_zhanghuguanli">公交查询</string>
+    <string name="res_left_honglvdengguanli">红绿灯管理</string>
+    <string name="res_left_wodezhanghu4">车辆违章</string>
+    <string name="res_left_zhanghuguanli5">路况查询</string>
+    <string name="res_left_honglvdengguanli6">生活助手</string>
+    <string name="res_left_wodezhanghu7">数据分析</string>
+    <string name="res_left_zhanghuguanli8">个人中心</string>
     <string name="res_left_chuanyi">创意</string>
     <string name="res_left_exit">用户退出</string>
 

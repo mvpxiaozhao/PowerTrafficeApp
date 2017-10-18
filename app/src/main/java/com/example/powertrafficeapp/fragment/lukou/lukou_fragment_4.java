@@ -185,7 +185,7 @@ public class lukou_fragment_4 extends Fragment {
                         arrayhong = new int[]{ho1, ho2, ho3, ho4, ho5};
                         for (int e = 0; e < (arraylu.length - 1); e++) {
                             for (int j = e + 1; j < arraylu.length; j++) {
-                                if (arraylu[e] > arraylu[j]) {
+                                if (arraylu[e] < arraylu[j]) {
                                     int lu = arraylu[e];
                                     arraylu[e] = arraylu[j];
                                     arraylu[j] = lu;

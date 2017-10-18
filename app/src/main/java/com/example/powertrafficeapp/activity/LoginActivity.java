@@ -53,9 +53,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 System.out.println("button Click OK");
 
-//                String stUsername = editText_username.getText().toString();
-//                String stUserpwd = editText_userpwd.getText().toString();
-
+                String stUsername = editText_username.getText().toString();
+                String stUserpwd = editText_userpwd.getText().toString();
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
 //                if (stUsername.equals("")){
 //                    Toast.makeText(LoginActivity.this,"请输入用户名",Toast.LENGTH_LONG).show();
 //                    return;
@@ -63,11 +65,13 @@ public class LoginActivity extends AppCompatActivity {
 //                    Toast.makeText(LoginActivity.this,"请输入密码",Toast.LENGTH_LONG).show();
 //                    return;
 //                }
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-
-//                queryVolley(stUsername,stUserpwd);
+//                if(stUsername.equals("admin")&&stUserpwd.equals("admin")){
+//
+//                }else if(stUsername.equals("user")&&stUserpwd.equals("user")){
+//                    Intent intent = new Intent(LoginActivity.this, MainuserActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                }
             }
         });
 
