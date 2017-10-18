@@ -94,7 +94,7 @@ public class Fragment_2 extends Fragment {
         mTextViewd4 = (TextView) getActivity().findViewById(R.id.textView_D4);
         mF2Expandable = (ExpandableListView) getActivity().findViewById(R.id.F2_Expandable);
 
-        urlBean = Util.loadSetting(getContext());
+        urlBean = Util.loadSetting("httpbao", "http", "port", getContext());
         urlHost = "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/transportservice/type/jason/action/GetBusStationInfo.do";
         JSONObject jsonObject = new JSONObject();
         try {

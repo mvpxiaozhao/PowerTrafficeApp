@@ -82,7 +82,7 @@ public class lukou_fragment_3 extends Fragment {
         button = (Button) relativeLayout.findViewById(R.id.btn_shezhi);
         button.setVisibility(View.GONE);
         Ralativeee.addView(relativeLayout);
-        urlBean = Util.loadSetting(getContext());
+        urlBean = Util.loadSetting("httpbao", "http", "port", getContext());
         urlHost = "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/transportservice/type/jason/action/GetTrafficLightConfigAction.do";
         JSONObject object = new JSONObject();
         try {

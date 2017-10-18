@@ -23,9 +23,6 @@ public class LoginActivity extends AppCompatActivity {
     TextView textView_tile;
     CheckBox checkBox_r;
     LinearLayout linearLayout_net_setting;
-    String userInfo = "userInfo";
-    String uName = "uName";
-    String uPwd = "uPwd";
     UrlBean urlBean;
     private String urlHttp;
     private String urlPort = "80";
@@ -35,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initView();
-        urlBean = Util.loadSetting(LoginActivity.this);
+        urlBean = Util.loadSetting("httpbao", "http", "port", LoginActivity.this);
     }
 
     private void initView() {
@@ -45,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         textView_tile = (TextView) findViewById(R.id.textView_title);
         textView_tile.setText("登录页面");
         checkBox_r = (CheckBox) findViewById(R.id.checkBox);
-
+        urlBean = Util.loadSetting("name", "user", "pass", this);
         Button button_ok = (Button) findViewById(R.id.button_ok);
         button_ok.setOnClickListener(new Button.OnClickListener() {
 
@@ -55,23 +52,26 @@ public class LoginActivity extends AppCompatActivity {
 
                 String stUsername = editText_username.getText().toString();
                 String stUserpwd = editText_userpwd.getText().toString();
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-//                if (stUsername.equals("")){
-//                    Toast.makeText(LoginActivity.this,"请输入用户名",Toast.LENGTH_LONG).show();
-//                    return;
-//                }else if(stUserpwd.equals("")){
-//                    Toast.makeText(LoginActivity.this,"请输入密码",Toast.LENGTH_LONG).show();
-//                    return;
-//                }
-//                if(stUsername.equals("admin")&&stUserpwd.equals("admin")){
-//
-//                }else if(stUsername.equals("user")&&stUserpwd.equals("user")){
-//                    Intent intent = new Intent(LoginActivity.this, MainuserActivity.class);
-//                    startActivity(intent);
-//                    finish();
-//                }
+
+                if (stUsername.equals("")) {
+                    Toast.makeText(LoginActivity.this, "请输入用户名", Toast.LENGTH_LONG).show();
+                    return;
+                } else if (stUserpwd.equals("")) {
+                    Toast.makeText(LoginActivity.this, "请输入密码", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if (stUsername.equals("admin") && stUserpwd.equals("admin")) {
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else if (stUsername.equals("user") && stUserpwd.equals("user")) {
+                    Intent intent = new Intent(LoginActivity.this, MainuserActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                if (checkBox_r.isChecked()) {
+                    Util.saveSetting("name", "user", "pass", stUsername, stUserpwd, LoginActivity.this);
+                }
             }
         });
 
@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (urlHttp == null || urlHttp.equals("")) {
                             Toast.makeText(LoginActivity.this, R.string.error_ip, Toast.LENGTH_LONG).show();
                         } else {
-                            Util.saveSetting(urlHttp, urlPort, LoginActivity.this);
+                            Util.saveSetting("httpbao", "http", "port", urlHttp, urlPort, LoginActivity.this);
                             urlSettingDialog.dismiss();
                         }
                     }

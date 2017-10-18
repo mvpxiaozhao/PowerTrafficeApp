@@ -20,7 +20,6 @@ public class DBAdapter {
     private final Context context;
     private SQLiteDatabase db;//数据库的操作对象
     private DBOpenHelper dbOpenHelper;
-
     public DBAdapter(Context _context) {
         context = _context;
     }
@@ -34,28 +33,6 @@ public class DBAdapter {
         }
     }
 
-    //	public void close()
-//	{
-//		if(db!=null)
-//		{
-//			db.close();
-//			db=null;
-//		}
-//	}
-//	在忘数据库中插入数据的时候，首先应该有一个ContentValues的对象所以：
-//
-//	ContentValues initialValues = new ContentValues()
-//
-//initialValues.put(key,values);
-//
-//	SQLiteDataBase sdb ;
-//
-//sdb.insert(database_name,null,initialValues);
-//
-//	插入成功就返回记录的id否则返回-1；
-//
-//	就可以插入一行数据，详细见下面代码
-//long
     public long Insert(Carinformation people) {
         ContentValues newValue = new ContentValues();
         newValue.put(KEY_NAME, people.Name);
@@ -135,20 +112,6 @@ public class DBAdapter {
             onCreate(arg0);
         }
     }
-//	public ArrayList Query() {
-//		//------将更新后的全部数据返回---------
-//		//定义一个键值对数组将数据返回到第一个列表Activity中更新进行显示
-//		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
-//		Cursor cursor = db.query(DB_TABLE, new String[]{KEY_ID,KEY_NAME,KEY_PHONE_NUMBER,KEY_ADDRESS,KEY_E_MAIL}, null, null, null, null, null);
-//		while(cursor.moveToNext()){
-//			HashMap<String, Object> map = new HashMap<String, Object>();
-//			map.put("name", cursor.getString(cursor.getColumnIndex("name")));
-//			map.put("phone_number", cursor.getString(cursor.getColumnIndex("phone_number")));
-//			map.put("address", cursor.getString(cursor.getColumnIndex("address")));
-//			map.put("e_mail", cursor.getString(cursor.getColumnIndex("e_mail")));
-//			list.add(map);
-//		}
-//		return list;   //返回全部数据list用于列表显示
-//	}
+
 
 }

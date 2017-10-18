@@ -19,7 +19,6 @@ import com.example.powertrafficeapp.R;
  */
 public class FragmentHome extends Fragment {
     private TextView twInfo;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

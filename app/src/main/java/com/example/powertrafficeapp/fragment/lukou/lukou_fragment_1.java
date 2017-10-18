@@ -57,7 +57,7 @@ public class lukou_fragment_1 extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Ralativeee = (LinearLayout) getActivity().findViewById(R.id.Ralativeerrrroe);
-        urlBean = Util.loadSetting(getContext());
+        urlBean = Util.loadSetting("httpbao", "http", "port", getContext());
         LayoutInflater inflate = LayoutInflater.from(getActivity());
         relativeLayout = inflate.inflate(R.layout.table, null);
         MyTableTextView title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);

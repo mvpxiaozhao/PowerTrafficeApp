@@ -63,7 +63,7 @@ public class lukou_fragment_4 extends Fragment {
         super.onActivityCreated(savedInstanceState);
         Ralativeee = (LinearLayout) getActivity().findViewById(R.id.Ralativeerrssrsess);
         relativeLayout = LayoutInflater.from(getActivity()).inflate(R.layout.table, null);
-        urlBean = Util.loadSetting(getContext());
+        urlBean = Util.loadSetting("httpbao", "http", "port", getContext());
         MyTableTextView title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
         title.setText(name[0]);
         title.setTextColor(Color.BLUE);

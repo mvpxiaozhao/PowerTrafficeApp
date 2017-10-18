@@ -107,7 +107,7 @@ public class Fragment_1 extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        urlBean = Util.loadSetting(getContext());
+        urlBean = Util.loadSetting("httpbao", "http", "port", getContext());
         urlHost = "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/";
         buttonPlcz = (Button) getActivity().findViewById(R.id.button_plcz);
         buttonCzjl = (Button) getActivity().findViewById(R.id.button_czjl);

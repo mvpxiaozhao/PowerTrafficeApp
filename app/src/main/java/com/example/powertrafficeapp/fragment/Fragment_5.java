@@ -120,7 +120,7 @@ public class Fragment_5 extends Fragment {
         textViewF5Date.setText(format.format(date));
         format = new SimpleDateFormat("EEEE");
         textViewF5Week.setText(format.format(date));
-        urlBean = Util.loadSetting(getContext());
+        urlBean = Util.loadSetting("httpbao", "http", "port", getContext());
         Httpurl = "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/transportservice/type/jason/action/GetAllSense.do";
         String sd = "";
         getAllCarValue(Httpurl, sd);
@@ -153,7 +153,6 @@ public class Fragment_5 extends Fragment {
                     textViewF5Wendu.setText("温度" + temperature + "℃");
                     textViewF5Shidu.setText("相对湿度" + humidity + "%");
                     textViewF5Pm2.setText("pm2.5" + pm + "ug/m3");
-                    urlBean = Util.loadSetting(getContext());
                     handler.postDelayed(runnable, 2000);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -411,9 +410,8 @@ public class Fragment_5 extends Fragment {
 
     private void dsfafaf() {
         tiui++;
-        urlBean = Util.loadSetting(getContext());
         if (tiui <= 7) {
-            Httpurllu = "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/transportservice/type/jason/action/GetRoadStatus.do";
+
             JSONObject guyu = new JSONObject();
             try {
                 guyu.put("RoadId", tiui);
