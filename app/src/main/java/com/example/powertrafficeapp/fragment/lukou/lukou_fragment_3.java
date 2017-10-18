@@ -278,13 +278,6 @@ public class lukou_fragment_3 extends Fragment {
                     }
                 }
             });
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialoge();
-                    Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
-                }
-            });
             button.setText(" 设置 ");
             Ralativeee.addView(relativeLayout);
         }
