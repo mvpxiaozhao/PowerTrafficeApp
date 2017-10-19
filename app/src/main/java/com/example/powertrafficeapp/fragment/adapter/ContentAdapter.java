@@ -83,7 +83,7 @@ public class ContentAdapter extends BaseAdapter {//自定义适配器
         viewHolder.carinfoTextViewBalance.setText("余额" + mListItem.get(i).get("balance").toString() + "元");
         int ddo = (int) mListItem.get(i).get("balance");
         if (ddo <= dddd) {
-            viewHolder.mline_f1_moban.setBackgroundResource(R.color.color3);
+            viewHolder.mline_f1_moban.setBackgroundResource(R.color.color8);
         }
         viewHolder.carinfoButtonChognzhi.setOnClickListener(mListener);
         viewHolder.carinfoCheckBoxChongzhi.setOnCheckedChangeListener(dd);

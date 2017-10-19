@@ -1,7 +1,9 @@
 package com.example.powertrafficeapp.fragment.f6;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -37,55 +39,83 @@ public class Fragment_f6_c1 extends Fragment {
     ArrayList<Integer> intyy = new ArrayList<>();//横坐标标签
     ArrayList<String> xVals = new ArrayList<>();//横坐标标签
     ArrayList<BarEntry> entries = new ArrayList<>();//显示条目
-    int ss = 1;
+    int ss = 0;
     private BarChart barchart1;
     private TextView textF6;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        Log.i("asasdasd", "onCreateView");
         View view = inflater.inflate(R.layout.f6_c1, container, false);
         return view;
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
+        Log.i("asasdasd", "onActivityCreated");
         super.onActivityCreated(savedInstanceState);
         textF6 = (TextView) getActivity().findViewById(R.id.text_f6);
         barchart1 = (BarChart) getActivity().findViewById(R.id.barchart_1);
-        //  int tt= random.nextInt(100);
-        entries.add(new BarEntry(0, 50));
-        intyy.add(50);
-        xVals.add(String.valueOf(0 * 3));
-        XAxis xAxis = barchart1.getXAxis();
-        xAxis.setValueFormatter(new IAxisValueFormatter() {
-            @Override
-            public String getFormattedValue(float v, AxisBase axisBase) {
-                return "0";
-            }
-
-            @Override
-            public int getDecimalDigits() {
-                return 0;
-            }
-        });
-        xAxis.setAxisLineWidth(3f);
-        xAxis.setTextSize(10f);
-        xAxis.setDrawGridLines(true);//设置x轴上每个点对应的线  
-        barchart1.invalidate();
-        Legend legend = barchart1.getLegend();
-        legend.setEnabled(false);
-        barchart1.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-        barDataSet = new BarDataSet(entries, "公司年利润报表");
-        barDataSet.setColor(R.color.color6);
-        data = new BarData();
-        data.addDataSet(barDataSet);
-        barchart1.setData(data);
         handler.postDelayed(rong, 1000);
     }
 
+    @Override
+    public void onAttach(Context context) {
+        Log.i("asasdasd", "onAttach");
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.i("asasdasd", "onCreate");
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        Log.i("asasdasd", "onStart");
+        super.onStart();
+    }
+
+    @Override
+    public void onPause() {
+        Log.i("asasdasd", "onPause");
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        Log.i("asasdasd", "onResume");
+        super.onResume();
+    }
+
+    @Override
+    public void onStop() {
+        Log.i("asasdasd", "onStop");
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.i("asasdasd", "onDestroy");
+        super.onDestroy();
+    }
+
+    @Override
+    public void onDestroyView() {
+        Log.i("asasdasd", "onDestroyView");
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onDetach() {
+        Log.i("asasdasd", "onDetach");
+        super.onDetach();
+    }
     class Rong implements Runnable {
         @Override
         public void run() {
+            if (ss <= 20) {
             xVals.add(String.valueOf(ss * 3));
             random = new Random();//随机数
             int profit = random.nextInt(100);
@@ -96,16 +126,13 @@ public class Fragment_f6_c1 extends Fragment {
             xAxis.setValueFormatter(new IAxisValueFormatter() {
                 @Override
                 public String getFormattedValue(float v, AxisBase axisBase) {
-
                     return xVals.get((int) v % xVals.size());
                 }
-
                 @Override
                 public int getDecimalDigits() {
                     return 0;
                 }
             });
-            ss++;
             xAxis.setAxisLineWidth(3f);
             xAxis.setTextSize(10f);
             xAxis.setDrawGridLines(true);//设置x轴上每个点对应的线  
@@ -116,6 +143,7 @@ public class Fragment_f6_c1 extends Fragment {
             barDataSet.setColor(R.color.color6);
             data = new BarData(barDataSet);
             barchart1.setData(data);
+                barchart1.notifyDataSetChanged();
             barchart1.invalidate();
             Description description = new Description();
             description.setText("公司前半年财务报表(单位：万元)");
@@ -123,13 +151,10 @@ public class Fragment_f6_c1 extends Fragment {
             Collections.sort(intyy);
             Log.i("ajsdhaksdhkashd", String.valueOf(intyy.get(intyy.size() - 1)));
             textF6.setText("二氧化碳最大值" + String.valueOf(intyy.get(intyy.size() - 1)) + "     ");
-            if (ss > 20) {
-                int ee = 0;
-                handler.removeCallbacks(rong);
-                Collections.sort(intyy);
-                Log.i("ajsdhaksdhkashd", String.valueOf(intyy.get(intyy.size() - 1)));
-            } else {
+                ss++;
                 handler.postDelayed(rong, 1000);
+            } else {
+                handler.removeCallbacks(rong);
             }
 
         }

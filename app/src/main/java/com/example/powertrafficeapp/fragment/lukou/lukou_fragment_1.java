@@ -170,7 +170,7 @@ public class lukou_fragment_1 extends Fragment {
         for (int i = 0; i < lhuang.size(); i++) {
             relativeLayout = LayoutInflater.from(getActivity()).inflate(R.layout.table, null);
             MyTableTextView title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
-            title.setText(String.valueOf(i));
+            title.setText(String.valueOf(i + 1));
             title.setTextColor(Color.BLUE);
             title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_2);
             title.setText(String.valueOf(lhong.get(i)));

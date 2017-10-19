@@ -141,9 +141,8 @@ public class Fragment_1 extends Fragment {
                             return;
                         }
                         urlHostAction = urlHost + netAction[1];
-                        String fsdfdf = "http://www.baidu.com";
                         JSONObject strJson = new JSONObject();
-                        if (che1 == false) {
+                        if (che1 == true) {
                             try {
                                 strJson.put("CarId", 1);
                                 strJson.put("Money", Integer.parseInt(edit_car_recharge.getText().toString()));
@@ -160,7 +159,7 @@ public class Fragment_1 extends Fragment {
                             Carinformation people = new Carinformation(name, carMoney, timee, carner);
                             adpter.Insert(people);
                             netFlag = 1;
-                            getAllfffCarValue(fsdfdf, strJson);
+                            getAllfffCarValue(urlHostAction, strJson);
                             rechargeDialog.dismiss();
                         }
                         if (che2 == true) {
@@ -201,7 +200,6 @@ public class Fragment_1 extends Fragment {
                         }
                         if (che4 == true) {
                             try {
-                                //   strJson.put("UserName", "user7");
                                 strJson.put("CarId", 4);
                                 strJson.put("Money", Integer.parseInt(edit_car_recharge.getText().toString()));
                             } catch (JSONException e) {
@@ -236,8 +234,6 @@ public class Fragment_1 extends Fragment {
                     }
                 });
                 rechargeDialog.show();
-
-
             }
         });
         buttonCzjl.setOnClickListener(new View.OnClickListener() {
@@ -250,7 +246,6 @@ public class Fragment_1 extends Fragment {
                 Carinformation[] peoplese = adpter.qurryAll();
                 if (peoplese == null) {
                     tsss.setText("对不起，没有充值信息");
-
                 } else {
                     String result = "";
                     for (int i = 0; i < peoplese.length; i++) {

@@ -94,27 +94,17 @@ public class Fragment_5 extends Fragment {
         zhong1Xia = (TextView) getActivity().findViewById(R.id.zhong_1_xia);
         zhong2Xia = (TextView) getActivity().findViewById(R.id.zhong_2_xia);
         image = (ImageView) getActivity().findViewById(R.id.imageView7);
-        long time = System.currentTimeMillis();
-        fragment5Shang.setText("环城快速路");
-        fragment5Zuo.setText("环城快速路");
-        fragment5Xia.setText("环城快速路");
-        fragment5Zhong3.setText("停车场");
-        fragment5Zhong1.setText("学院路");
-        fragment5Zhong2.setText("联想路");
-        zhong1Xia.setText("幸福路");
-        zhong2Xia.setText("医院路");
-        fragment5You.setText("环城高速");
 
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 handler.removeCallbacks(runnable);
-                Httpurl = "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/transportservice/type/jason/action/GetAllSense.do";
                 String sd = "";
                 getAllCarValue(Httpurl, sd);
             }
         });
-        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒 EEEE");
+        long time = System.currentTimeMillis();
+        SimpleDateFormat format;
         Date date = new Date(time);
         format = new SimpleDateFormat("yyyy/MM/dd");
         textViewF5Date.setText(format.format(date));
@@ -122,17 +112,18 @@ public class Fragment_5 extends Fragment {
         textViewF5Week.setText(format.format(date));
         urlBean = Util.loadSetting("httpbao", "http", "port", getContext());
         Httpurl = "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/transportservice/type/jason/action/GetAllSense.do";
+        Httpurllu = "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/transportservice/type/jason/action/GetRoadStatus.do";
         String sd = "";
+        Log.i("adasdasd", Httpurl);
         getAllCarValue(Httpurl, sd);
         handler.postDelayed(runnable, 4000);
-    }
 
+    }
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         handler.removeCallbacks(runnable);
     }
-
     private void getAllCarValue(String urlHostAction, String params) {
         RequestQueue mQueue = Volley.newRequestQueue(getContext());
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, urlHostAction, params, new Response.Listener<JSONObject>() {
@@ -153,7 +144,7 @@ public class Fragment_5 extends Fragment {
                     textViewF5Wendu.setText("温度" + temperature + "℃");
                     textViewF5Shidu.setText("相对湿度" + humidity + "%");
                     textViewF5Pm2.setText("pm2.5" + pm + "ug/m3");
-                    handler.postDelayed(runnable, 2000);
+                    handler.postDelayed(runnable, 1000);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -245,37 +236,36 @@ public class Fragment_5 extends Fragment {
                         dff7 = dfdfdfg.getInt("Status");
                         if (dff7 == 0) {
                             fragment5Shang.setBackgroundResource(R.drawable.f5_lelf1);
-                            fragment5Zuo.setBackgroundResource(R.drawable.f5_lelf1);
-                            fragment5Xia.setBackgroundResource(R.drawable.f5_lelf1);
+                            fragment5Zuo.setBackgroundResource(R.color.color1);
+                            fragment5Xia.setBackgroundResource(R.drawable.f5_right1);
                             fragment5Shang.setText("环城快速路");
                             fragment5Zuo.setText("环城快速路");
                             fragment5Xia.setText("环城快速路");
-
                         } else if (dff7 == 1) {
                             fragment5Shang.setBackgroundResource(R.drawable.f5_lelf2);
-                            fragment5Zuo.setBackgroundResource(R.drawable.f5_lelf2);
-                            fragment5Xia.setBackgroundResource(R.drawable.f5_lelf2);
+                            fragment5Zuo.setBackgroundResource(R.color.color2);
+                            fragment5Xia.setBackgroundResource(R.drawable.f5_right2);
                             fragment5Shang.setText("环城快速路");
                             fragment5Zuo.setText("环城快速路");
                             fragment5Xia.setText("环城快速路");
                         } else if (dff7 == 2) {
                             fragment5Shang.setBackgroundResource(R.drawable.f5_lelf3);
-                            fragment5Zuo.setBackgroundResource(R.drawable.f5_lelf3);
-                            fragment5Xia.setBackgroundResource(R.drawable.f5_lelf3);
+                            fragment5Zuo.setBackgroundResource(R.color.color3);
+                            fragment5Xia.setBackgroundResource(R.drawable.f5_right3);
                             fragment5Shang.setText("环城快速路");
                             fragment5Zuo.setText("环城快速路");
                             fragment5Xia.setText("环城快速路");
                         } else if (dff7 == 3) {
                             fragment5Shang.setBackgroundResource(R.drawable.f5_lelf4);
-                            fragment5Zuo.setBackgroundResource(R.drawable.f5_lelf4);
-                            fragment5Xia.setBackgroundResource(R.drawable.f5_lelf4);
+                            fragment5Zuo.setBackgroundResource(R.color.color4);
+                            fragment5Xia.setBackgroundResource(R.drawable.f5_right4);
                             fragment5Shang.setText("环城快速路");
                             fragment5Zuo.setText("环城快速路");
                             fragment5Xia.setText("环城快速路");
                         } else if (dff7 == 4) {
                             fragment5Shang.setBackgroundResource(R.drawable.f5_lelf5);
-                            fragment5Zuo.setBackgroundResource(R.drawable.f5_lelf5);
-                            fragment5Xia.setBackgroundResource(R.drawable.f5_lelf5);
+                            fragment5Zuo.setBackgroundResource(R.color.color5);
+                            fragment5Xia.setBackgroundResource(R.drawable.f5_right5);
                             fragment5Shang.setText("环城快速路");
                             fragment5Zuo.setText("环城快速路");
                             fragment5Xia.setText("环城快速路");
@@ -362,21 +352,22 @@ public class Fragment_5 extends Fragment {
                             zhong2Xia.setText("医院路");
                         }
                         if (dff6 == 0) {
-                            fragment5You.setBackgroundResource(R.drawable.f5_lelf1);
+                            fragment5You.setBackgroundResource(R.color.color1);
                             fragment5You.setText("环城高速");
                         } else if (dff6 == 1) {
-                            fragment5You.setBackgroundResource(R.drawable.f5_lelf2);
+                            fragment5You.setBackgroundResource(R.color.color2);
                             fragment5You.setText("环城高速");
                         } else if (dff6 == 2) {
-                            fragment5You.setBackgroundResource(R.drawable.f5_lelf3);
+                            fragment5You.setBackgroundResource(R.color.color3);
                             fragment5You.setText("环城高速");
                         } else if (dff6 == 3) {
-                            fragment5You.setBackgroundResource(R.drawable.f5_lelf4);
+                            fragment5You.setBackgroundResource(R.color.color4);
                             fragment5You.setText("环城高速");
                         } else if (dff6 == 4) {
-                            fragment5You.setBackgroundResource(R.drawable.f5_lelf5);
+                            fragment5You.setBackgroundResource(R.color.color5);
                             fragment5You.setText("环城高速");
                         }
+                        handler.postDelayed(runnable, 4000);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -402,7 +393,6 @@ public class Fragment_5 extends Fragment {
                 // TODO Auto-generated method stub
                 Toast.makeText(getContext(), "失败", Toast.LENGTH_SHORT).show();
                 Log.i("TAG volley", error.toString());
-
             }
         });
         mQueue.add(jsonObjectRequest);
@@ -410,8 +400,6 @@ public class Fragment_5 extends Fragment {
 
     private void dsfafaf() {
         tiui++;
-        if (tiui <= 7) {
-
             JSONObject guyu = new JSONObject();
             try {
                 guyu.put("RoadId", tiui);
@@ -419,23 +407,20 @@ public class Fragment_5 extends Fragment {
                 e.printStackTrace();
             }
             getAllCarrrValue(Httpurllu, guyu);
-        } else {
-            return;
-        }
+
     }
     class Runnable implements java.lang.Runnable {
         @Override
         public void run() {
             tiui = 1;
-            Httpurllu = "http://" + urlBean.getUrl() + ":" + urlBean.getPort() + "/transportservice/type/jason/action/GetRoadStatus.do";
             JSONObject guyu = new JSONObject();
             try {
                 guyu.put("RoadId", tiui);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            Log.i("adasdasd", Httpurl + guyu);
             getAllCarrrValue(Httpurllu, guyu);
-            handler.postDelayed(runnable, 4000);
         }
     }
 }

@@ -40,7 +40,7 @@ public class Fragment_f6_c2 extends Fragment {
     ArrayList<Integer> intyy = new ArrayList<>();//横坐标标签
     ArrayList<String> xVals = new ArrayList<>();//横坐标标签
     ArrayList<Entry> entries = new ArrayList<>();//显示条目
-    int ss = 1;
+    int ss = 0;
     private TextView textF6C2;
     private LineChart linec2;
 
@@ -55,34 +55,6 @@ public class Fragment_f6_c2 extends Fragment {
         super.onActivityCreated(savedInstanceState);
         textF6C2 = (TextView) getActivity().findViewById(R.id.text_f6_c2);
         linec2 = (LineChart) getActivity().findViewById(R.id.linec_2);
-        //  int tt= random.nextInt(100);
-        entries.add(new BarEntry(0, 50));
-        intyy.add(50);
-        xVals.add(String.valueOf(0 * 3));
-        XAxis xAxis = linec2.getXAxis();
-        xAxis.setValueFormatter(new IAxisValueFormatter() {
-            @Override
-            public String getFormattedValue(float v, AxisBase axisBase) {
-                return "0";
-            }
-
-            @Override
-            public int getDecimalDigits() {
-                return 0;
-            }
-        });
-        xAxis.setAxisLineWidth(3f);
-        xAxis.setTextSize(10f);
-        xAxis.setDrawGridLines(true);//设置x轴上每个点对应的线  
-        linec2.invalidate();
-        Legend legend = linec2.getLegend();
-        legend.setEnabled(false);
-        linec2.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-        lineDataSet = new LineDataSet(entries, "公司年利润报表");
-        lineDataSet.setColor(R.color.color6);
-        lineData = new LineData();
-        lineData.addDataSet(lineDataSet);
-        linec2.setData(lineData);
         handler.postDelayed(rongc2, 1000);
     }
 
@@ -90,13 +62,12 @@ public class Fragment_f6_c2 extends Fragment {
 
         @Override
         public void run() {
-
+            if (ss <= 20) {
             xVals.add(String.valueOf(ss * 3));
             random = new Random();//随机数
             int profit = random.nextInt(100);
             entries.add(new BarEntry(ss, profit));
             intyy.add(profit);
-            Log.i("asdasdasd", xVals.get(0));
             XAxis xAxis = linec2.getXAxis();
             xAxis.setValueFormatter(new IAxisValueFormatter() {
                 @Override
@@ -110,7 +81,6 @@ public class Fragment_f6_c2 extends Fragment {
                     return 0;
                 }
             });
-            ss++;
             YAxis rightAxis = linec2.getAxisRight();
             rightAxis.setSpaceMin(0f);
             xAxis.setAxisLineWidth(3f);
@@ -123,20 +93,18 @@ public class Fragment_f6_c2 extends Fragment {
             lineDataSet.setColor(R.color.color6);
             lineData = new LineData(lineDataSet);
             linec2.setData(lineData);
+                linec2.notifyDataSetChanged();
             linec2.invalidate();
             Description description = new Description();
             description.setText("公司前半年财务报表(单位：万元)");
             linec2.setDescription(description);
             Collections.sort(intyy);
             Log.i("ajsdhaksdhkashd", String.valueOf(intyy.get(intyy.size() - 1)));
-            textF6C2.setText("湿度最大值" + String.valueOf(intyy.get(intyy.size() - 1)) + "     ");
-            if (ss > 20) {
-                int ee = 0;
-                handler.removeCallbacks(rongc2);
-                Collections.sort(intyy);
-                Log.i("ajsdhaksdhkashd", String.valueOf(intyy.get(intyy.size() - 1)));
-            } else {
+                textF6C2.setText("湿度最大值" + String.valueOf(intyy.get(intyy.size() - 1)) + "     ");
+                ss++;
                 handler.postDelayed(rongc2, 1000);
+            } else {
+                handler.removeCallbacks(rongc2);
             }
 
         }

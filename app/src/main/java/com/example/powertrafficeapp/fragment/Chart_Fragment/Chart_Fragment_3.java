@@ -56,9 +56,9 @@ public class Chart_Fragment_3 extends Fragment {
         mPieChart.setData(data);
         mPieChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
         Legend l = mPieChart.getLegend();
-        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);
-        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
-        l.setOrientation(Legend.LegendOrientation.VERTICAL);
+        l.setVerticalAlignment(Legend.LegendVerticalAlignment.TOP);//上方
+        l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);//右边
+        l.setOrientation(Legend.LegendOrientation.VERTICAL);//垂直
         l.setDrawInside(false);
         l.setXEntrySpace(10f);
         l.setYEntrySpace(10f);

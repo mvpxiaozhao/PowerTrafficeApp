@@ -237,7 +237,6 @@ public class lukou_fragment_3 extends Fragment {
     }
     private void jiashuju() {
         for (int i = 0; i < arrayw.length; i++) {
-
             relativeLayout = LayoutInflater.from(getActivity()).inflate(R.layout.table, null);
             MyTableTextView title = (MyTableTextView) relativeLayout.findViewById(R.id.list_1_1);
             title.setText(String.valueOf(arrayw[i]));

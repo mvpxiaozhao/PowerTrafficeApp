@@ -1,10 +1,15 @@
 package com.example.powertrafficeapp.fragment;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +33,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -38,6 +44,7 @@ import java.util.Random;
 public class Fragment_6 extends Fragment {
     int ss = 0;
     String week[] = {"昨天", "今天", "明天", "周五", "周六", "周日", "周一"};
+    List<Fragment> list = new ArrayList<>();
     private LineChart lineChart;
     private Random random;
     private LineData data1;
@@ -52,12 +59,70 @@ public class Fragment_6 extends Fragment {
     private TextView textView9;
     private TextView textView8;
     private RadioGroup grour;
+    private ViewPager viewpager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_layout06, container, false);
         return view;
+
+
     }
+
+    @Override
+    public void onAttach(Context context) {
+        Log.i("asasdasd", "onAttach");
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.i("asasdasd", "onCreate");
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        Log.i("asasdasd", "onStart");
+        super.onStart();
+    }
+
+    @Override
+    public void onPause() {
+        Log.i("asasdasd", "onPause");
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        Log.i("asasdasd", "onResume");
+        super.onResume();
+    }
+
+    @Override
+    public void onStop() {
+        Log.i("asasdasd", "onStop");
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.i("asasdasd", "onDestroy");
+        super.onDestroy();
+    }
+
+    @Override
+    public void onDestroyView() {
+        Log.i("asasdasd", "onDestroyView");
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onDetach() {
+        Log.i("asasdasd", "onDetach");
+        super.onDetach();
+    }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -71,28 +136,46 @@ public class Fragment_6 extends Fragment {
         textView9 = (TextView) getActivity().findViewById(R.id.textView9);
         textView8 = (TextView) getActivity().findViewById(R.id.textView8);
         grour = (RadioGroup) getActivity().findViewById(R.id.grour);
-        getFragmentManager().beginTransaction().replace(R.id.linerrrr, new Fragment_f6_c1()).commit();
+        viewpager = (ViewPager) getActivity().findViewById(R.id.viewpager);
+        list.add(new Fragment_f6_c1());
+        list.add(new Fragment_f6_c2());
+        list.add(new Fragment_f6_c3());
+        list.add(new Fragment_f6_c4());
+        Viewp viewp = new Viewp(getFragmentManager());
+        viewpager.setAdapter(viewp);
+        viewpager.addOnPageChangeListener(new Mypager());
+        try {
+            finalize();
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
         grour.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                int uu = 0;
                 switch (checkedId) {
                     case R.id.ridebutton1_f6:
-                        getFragmentManager().beginTransaction().replace(R.id.linerrrr, new Fragment_f6_c1()).commit();
+                        uu = 0;
                         break;
                     case R.id.ridebutton2_f6:
-                        getFragmentManager().beginTransaction().replace(R.id.linerrrr, new Fragment_f6_c2()).commit();
+                        uu = 1;
                         break;
                     case R.id.ridebutton3_f6:
-                        getFragmentManager().beginTransaction().replace(R.id.linerrrr, new Fragment_f6_c3()).commit();
+                        uu = 2;
                         break;
                     case R.id.ridebutton4_f6:
-                        getFragmentManager().beginTransaction().replace(R.id.linerrrr, new Fragment_f6_c4()).commit();
+                        uu = 3;
                         break;
+                }
+                if (viewpager.getCurrentItem() != uu) {
+                    viewpager.setCurrentItem(uu);
+
                 }
             }
         });
         LineChart();
     }
+
     public void LineChart() {
         ArrayList<Entry> yVals = new ArrayList<>();
         ArrayList<Entry> yValse = new ArrayList<>();
@@ -122,11 +205,9 @@ public class Fragment_6 extends Fragment {
         dataSet1.setValueTextSize(10f);
         dataSet1.setValueTypeface(null);
         dataSet1.setDrawCircles(false);      // 不显示坐标点的小圆点
-
         dataSet1.setHighlightEnabled(false);  // 不显示定位线
         dataSet2 = new LineDataSet(yValse, "温度cc");//创建数据集并设置标签
         dataSet2.setDrawCircles(false);      // 不显示坐标点的小圆点
-
         dataSet2.setHighlightEnabled(false);  // 不显示定位线
         dataSet2.setValueTextColor(Color.BLUE);//设置Value值的显示文字颜色，字体大小和字体种类，这里我没有添加对应字体可以自己修改
         dataSet2.setValueTextSize(10f);
@@ -134,34 +215,6 @@ public class Fragment_6 extends Fragment {
         dataSet2.setValueTypeface(null);
         data1 = new LineData(dataSet1);//创建LineData,x轴List和Y轴数据集为参数
         data1.addDataSet(dataSet2);
-//        // 是否在折线图上添加边框
-//        mLineChart.setDrawBorders(false);
-//        mLineChart.setDescription("描述@ZhangPhil");// 数据描述
-//        // 如果没有数据的时候，会显示这个，类似listview的emtpyview
-//        mLineChart.setNoDataTextDescription("如果传给MPAndroidChart的数据为空，那么你将看到这段文字。@Zhang Phil");
-//        // 是否绘制背景颜色。
-//        // 如果mLineChart.setDrawGridBackground(false)，
-//        // 那么mLineChart.setGridBackgroundColor(Color.CYAN)将失效;
-//        mLineChart.setDrawGridBackground(false);
-//        mLineChart.setGridBackgroundColor(Color.CYAN);
-//        // 触摸
-//        mLineChart.setTouchEnabled(true);
-//        // 拖拽
-//        mLineChart.setDragEnabled(true);
-//        // 缩放
-//        mLineChart.setScaleEnabled(true);
-//        mLineChart.setPinchZoom(false);
-//        // 隐藏右边 的坐标轴
-//        mLineChart.getAxisRight().setEnabled(false);
-//        // 让x轴在下面
-//        mLineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
-//        // // 隐藏左边坐标轴横网格线
-//        // mLineChart.getAxisLeft().setDrawGridLines(false);
-//        // // 隐藏右边坐标轴横网格线
-//        // mLineChart.getAxisRight().setDrawGridLines(false);
-//        // // 隐藏X轴竖网格线
-//        // mLineChart.getXAxis().setDrawGridLines(false);
-//        mLineChart.getAxisRight().setEnabled(true); // 隐藏右边 的坐标轴(true不隐藏)
         Legend legend = lineChart.getLegend();//设置图例
         legend.setEnabled(false);//不显示图例
         legend.setTextColor(Color.CYAN); //设置Legend 文本颜色
@@ -177,5 +230,57 @@ public class Fragment_6 extends Fragment {
         lineChart.getAxisRight().setEnabled(false);//关闭右边的Y轴，因为默认有两条，左边一条，右边一条，MPAndroidChart中有setEnabled方法的元素基本上都是使能的作用
         lineChart.getAxisLeft().setEnabled(false);//关闭右边的Y轴，因为默认有两条，左边一条，右边一条，MPAndroidChart中有setEnabled方法的元素基本上都是使能的作用
         lineChart.animateY(3000);//动画效果，MPAndroidChart中还有很多动画效果可以挖掘
+    }
+
+    class Viewp extends FragmentPagerAdapter {
+        public Viewp(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return list.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return list.size();
+        }
+    }
+
+    class Mypager implements ViewPager.OnPageChangeListener {
+
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            int current = viewpager.getCurrentItem();
+            switch (current) {
+                case 0:
+                    grour.check(R.id.ridebutton1_f6);
+
+                    break;
+                case 1:
+                    grour.check(R.id.ridebutton2_f6);
+
+                    break;
+                case 2:
+                    grour.check(R.id.ridebutton3_f6);
+
+                    break;
+                case 3:
+                    grour.check(R.id.ridebutton4_f6);
+                    break;
+
+            }
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
     }
 }
