@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 
 import com.example.powertrafficeapp.R;
 import com.example.powertrafficeapp.util.MyMarkerView;
-import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
@@ -30,19 +29,16 @@ import java.util.Random;
 
 public class Chart_Fragment_1 extends Fragment {
     String week[] = {"昨天", "今天", "明天", "周五", "周六", "周日", "周一"};
-    private BarChart chart;
     private LineChart lineChart;
     private Random random;
     private LineData data1;
     private LineDataSet dataSet1;
     private LineDataSet dataSet2;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.chart_fragment_layout1, container, false);
         return view;
     }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -58,6 +54,7 @@ public class Chart_Fragment_1 extends Fragment {
             float x = random.nextInt(100);//获取value值
             yVals.add(new Entry(i, x));//创建Entry并且添加到Y值的list中，Y轴的值，一个entry代表一个显示的值
         }
+        //
         xeValsd.add(new Entry(0, 30));
         xeValsd.add(new Entry(1, 78));
         xeValsd.add(new Entry(2, 96));
@@ -67,15 +64,24 @@ public class Chart_Fragment_1 extends Fragment {
         xeValsd.add(new Entry(6, 68));
         dataSet1 = new LineDataSet(yVals, "今天温度");//创建数据集并设置标签
         dataSet1.setColor(Color.WHITE);//设置数据集显示的颜色，预支颜色模版ColorTemplate，也可以设置单一颜色和colors
-        dataSet1.setHighlightEnabled(true);//设置高亮
         dataSet1.setValueTextColor(Color.BLUE);//设置Value值的显示文字颜色，字体大小和字体种类，这里我没有添加对应字体可以自己修改
         dataSet1.setValueTextSize(10.0f);
         dataSet1.setValueTypeface(null);
+        //加X轴数据
         XAxis xAxis = lineChart.getXAxis();
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float v, AxisBase axisBase) {
+                return week[(int) v % week.length];
+            }
+
+            @Override
+            public int getDecimalDigits() {
+                return 0;
+            }
+        });
         xAxis.setGranularity(1f);//最小单位
-        MyXFormatter myXFormatter = new MyXFormatter(week);
-        lineChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);//设置X轴的显示位置，通过XAxisPosition枚举类型来设置
-        xAxis.setValueFormatter(myXFormatter);
+        lineChart.getXAxis().setPosition(XAxis.XAxisPosition.TOP);//设置X轴的显示位置，通过XAxisPosition枚举类型来设置
         MyMarkerView mv = new MyMarkerView(getActivity(), R.layout.textview);
         lineChart.setMarker(mv);
         dataSet2 = new LineDataSet(xeValsd, "昨天温度");//创建数据集并设置标签
