@@ -19,5 +19,5 @@ public abstract class IClick implements OnClickListener {
     public void onClick(View v) {
         listViewItemClick((Integer) v.getTag(), v);
     }
-
+//nanaisjci
 }

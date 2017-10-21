@@ -101,7 +101,6 @@ public class Chart_Fragment_4 extends Fragment {
         mBarChart.setFitBars(true);
         mBarChart.invalidate();
     }
-
     private int[] getColors() {
         int stacksize = 3;
         //有尽可能多的颜色每项堆栈值

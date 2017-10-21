@@ -13,6 +13,7 @@ import com.example.powertrafficeapp.util.MyMarkerView;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
@@ -54,7 +55,6 @@ public class Chart_Fragment_1 extends Fragment {
             float x = random.nextInt(100);//获取value值
             yVals.add(new Entry(i, x));//创建Entry并且添加到Y值的list中，Y轴的值，一个entry代表一个显示的值
         }
-        //
         xeValsd.add(new Entry(0, 30));
         xeValsd.add(new Entry(1, 78));
         xeValsd.add(new Entry(2, 96));
@@ -74,7 +74,6 @@ public class Chart_Fragment_1 extends Fragment {
             public String getFormattedValue(float v, AxisBase axisBase) {
                 return week[(int) v % week.length];
             }
-
             @Override
             public int getDecimalDigits() {
                 return 0;
@@ -85,6 +84,8 @@ public class Chart_Fragment_1 extends Fragment {
         MyMarkerView mv = new MyMarkerView(getActivity(), R.layout.textview);
         lineChart.setMarker(mv);
         dataSet2 = new LineDataSet(xeValsd, "昨天温度");//创建数据集并设置标签
+        Legend legend = lineChart.getLegend();
+        legend.setEnabled(false);
         dataSet2.setColor(Color.BLUE);//设置数据集显示的颜色，预支颜色模版ColorTemplate，也可以设置单一颜色和colors
         dataSet2.setHighlightEnabled(true);//设置高亮
         dataSet2.setValueTextColor(Color.BLACK);//设置Value值的显示文字颜色，字体大小和字体种类，这里我没有添加对应字体可以自己修改
@@ -93,32 +94,12 @@ public class Chart_Fragment_1 extends Fragment {
         data1 = new LineData(dataSet1);
         //创建LineData,x轴List和Y轴数据集为参数
         data1.addDataSet(dataSet2);
-        lineChart.setData(data1);//给图表添加数据
         Description description = new Description();
         description.setText("温度变化表");
+        lineChart.setData(data1);//给图表添加数据
         lineChart.setDescription(description);//设置图表描述的内容位置，字体等等
-
         lineChart.getAxisRight().setEnabled(false);//关闭右边的Y轴，因为默认有两条，左边一条，右边一条，MPAndroidChart中有setEnabled方法的元素基本上都是使能的作用
         lineChart.animateY(3000);//动画效果，MPAndroidChart中还有很多动画效果可以挖掘
         lineChart.invalidate();//在chart中调用会使其刷新重绘
-    }
-
-    public class MyXFormatter implements IAxisValueFormatter {
-        private String[] mValues;
-
-        public MyXFormatter(String[] values) {
-            this.mValues = values;
-        }
-
-        @Override
-        public String getFormattedValue(float value, AxisBase axis) {
-            // "value" represents the position of the label on the axis (x or y)
-            return mValues[(int) value % mValues.length];
-        }
-
-        @Override
-        public int getDecimalDigits() {
-            return 0;
-        }
     }
 }

@@ -21,11 +21,12 @@ public class GuideActivity extends AppCompatActivity {
         sd = Util.loadSettingtime("sss", "asas", this);
         Log.i("sdfsd", String.valueOf(sd));
         if (sd == 1) {
-            Util.saveSettingtime("sss", "asas", 1, this);
+
             Intent intent = new Intent(GuideActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
         } else {
+            Util.saveSettingtime("sss", "asas", 1, this);
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

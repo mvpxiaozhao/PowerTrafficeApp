@@ -54,6 +54,12 @@ public class Fragment_f6_c4 extends Fragment {
         super.onActivityCreated(savedInstanceState);
         textF6C4 = (TextView) getActivity().findViewById(R.id.text_f6_c4);
         linec4 = (LineChart) getActivity().findViewById(R.id.linec_4);
+        ss = 0;
+        entries = new ArrayList<>();//显示条目
+        linec4.notifyDataSetChanged();
+        linec4.invalidate();
+        linec4.setData(new LineData());
+        linec4.clear();
         handler.postDelayed(rongc4, 1000);
     }
 

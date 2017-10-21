@@ -16,10 +16,7 @@ import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
-import com.github.mikephil.charting.highlight.Highlight;
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -88,14 +85,5 @@ public class Chart_Fragment_2 extends Fragment {
         Description description = new Description();
         description.setText("温度变化表(单位:摄氏度)");
         chart.setDescription(description);
-        chart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
-            @Override
-            public void onValueSelected(Entry entry, Highlight highlight) {
-            }
-
-            @Override
-            public void onNothingSelected() {
-            }
-        });
     }
 }

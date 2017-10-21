@@ -202,7 +202,7 @@ public class lukou_fragment_1 extends Fragment {
                             Log.i("dsad", "3");
                             break;
                         case 4:
-                            Log.i("dsad", "3");
+                            Log.i("dsad", "4");
                             break;
 
                     }

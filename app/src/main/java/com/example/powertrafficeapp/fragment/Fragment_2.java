@@ -71,6 +71,59 @@ public class Fragment_2 extends Fragment {
     }
 
     @Override
+    public void onAttach(Context context) {
+        Log.i("asasdasd", "onAttach");
+        super.onAttach(context);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.i("asasdasd", "onCreate");
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onStart() {
+        Log.i("asasdasd", "onStart");
+        super.onStart();
+    }
+
+    @Override
+    public void onPause() {
+        Log.i("asasdasd", "onPause");
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        Log.i("asasdasd", "onResume");
+        super.onResume();
+    }
+
+    @Override
+    public void onStop() {
+        Log.i("asasdasd", "onStop");
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.i("asasdasd", "onDestroy");
+        super.onDestroy();
+    }
+
+    @Override
+    public void onDestroyView() {
+        Log.i("asasdasd", "onDestroyView");
+        super.onDestroyView();
+    }
+
+    @Override
+    public void onDetach() {
+        Log.i("asasdasd", "onDetach");
+        super.onDetach();
+    }
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mImageViewF2Tubiao = (ImageView) getActivity().findViewById(R.id.imageView_F2_tubiao);

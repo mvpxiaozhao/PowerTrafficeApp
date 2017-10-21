@@ -38,78 +38,80 @@ public class Fragment_f6_c1 extends Fragment {
     Rong rong = new Rong();
     ArrayList<Integer> intyy = new ArrayList<>();//横坐标标签
     ArrayList<String> xVals = new ArrayList<>();//横坐标标签
-    ArrayList<BarEntry> entries = new ArrayList<>();//显示条目
+    ArrayList<BarEntry> entries;
     int ss = 0;
     private BarChart barchart1;
     private TextView textF6;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.i("asasdasd", "onCreateView");
+        Log.i("asasdasd", "1onCreateView");
         View view = inflater.inflate(R.layout.f6_c1, container, false);
         return view;
     }
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
-        Log.i("asasdasd", "onActivityCreated");
+        Log.i("asasdasd", "1onActivityCreated");
         super.onActivityCreated(savedInstanceState);
         textF6 = (TextView) getActivity().findViewById(R.id.text_f6);
         barchart1 = (BarChart) getActivity().findViewById(R.id.barchart_1);
+        ss = 0;
+        entries = new ArrayList<>();//显示条目
+        barchart1.notifyDataSetChanged();
+        barchart1.invalidate();
+        barchart1.setData(new BarData());
+        barchart1.clear();
         handler.postDelayed(rong, 1000);
     }
-
     @Override
     public void onAttach(Context context) {
-        Log.i("asasdasd", "onAttach");
+        Log.i("asasdasd", "1onAttach");
         super.onAttach(context);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.i("asasdasd", "onCreate");
+        Log.i("asasdasd", "1onCreate");
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public void onStart() {
-        Log.i("asasdasd", "onStart");
+        Log.i("asasdasd", "1onStart");
         super.onStart();
     }
 
     @Override
     public void onPause() {
-        Log.i("asasdasd", "onPause");
+        Log.i("asasdasd", "1onPause");
         super.onPause();
     }
 
     @Override
     public void onResume() {
-        Log.i("asasdasd", "onResume");
+        Log.i("asasdasd", "1onResume");
         super.onResume();
     }
-
     @Override
     public void onStop() {
-        Log.i("asasdasd", "onStop");
+        Log.i("asasdasd", "1onStop");
         super.onStop();
     }
-
     @Override
     public void onDestroy() {
-        Log.i("asasdasd", "onDestroy");
+        Log.i("asasdasd", "1onDestroy");
         super.onDestroy();
     }
 
     @Override
     public void onDestroyView() {
-        Log.i("asasdasd", "onDestroyView");
+        Log.i("asasdasd", "1onDestroyView");
         super.onDestroyView();
     }
 
     @Override
     public void onDetach() {
-        Log.i("asasdasd", "onDetach");
+        Log.i("asasdasd", "1onDetach");
         super.onDetach();
     }
     class Rong implements Runnable {
@@ -144,13 +146,14 @@ public class Fragment_f6_c1 extends Fragment {
             data = new BarData(barDataSet);
             barchart1.setData(data);
                 barchart1.notifyDataSetChanged();
+                barchart1.invalidate();
             barchart1.invalidate();
             Description description = new Description();
             description.setText("公司前半年财务报表(单位：万元)");
             barchart1.setDescription(description);
             Collections.sort(intyy);
             Log.i("ajsdhaksdhkashd", String.valueOf(intyy.get(intyy.size() - 1)));
-            textF6.setText("二氧化碳最大值" + String.valueOf(intyy.get(intyy.size() - 1)) + "     ");
+                textF6.setText("二氧化碳最大值" + String.valueOf(intyy.get(intyy.size() - 1)) + "        ");
                 ss++;
                 handler.postDelayed(rong, 1000);
             } else {

@@ -60,69 +60,56 @@ public class Fragment_6 extends Fragment {
     private TextView textView8;
     private RadioGroup grour;
     private ViewPager viewpager;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_layout06, container, false);
         return view;
-
-
     }
-
     @Override
     public void onAttach(Context context) {
         Log.i("asasdasd", "onAttach");
         super.onAttach(context);
     }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         Log.i("asasdasd", "onCreate");
         super.onCreate(savedInstanceState);
     }
-
     @Override
     public void onStart() {
         Log.i("asasdasd", "onStart");
         super.onStart();
     }
-
     @Override
     public void onPause() {
         Log.i("asasdasd", "onPause");
         super.onPause();
     }
-
     @Override
     public void onResume() {
         Log.i("asasdasd", "onResume");
         super.onResume();
     }
-
     @Override
     public void onStop() {
         Log.i("asasdasd", "onStop");
         super.onStop();
     }
-
     @Override
     public void onDestroy() {
         Log.i("asasdasd", "onDestroy");
         super.onDestroy();
     }
-
     @Override
     public void onDestroyView() {
         Log.i("asasdasd", "onDestroyView");
         super.onDestroyView();
     }
-
     @Override
     public void onDetach() {
         Log.i("asasdasd", "onDetach");
         super.onDetach();
     }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -149,6 +136,7 @@ public class Fragment_6 extends Fragment {
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
+        viewpager.setCurrentItem(0);
         grour.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
@@ -169,13 +157,11 @@ public class Fragment_6 extends Fragment {
                 }
                 if (viewpager.getCurrentItem() != uu) {
                     viewpager.setCurrentItem(uu);
-
                 }
             }
         });
         LineChart();
     }
-
     public void LineChart() {
         ArrayList<Entry> yVals = new ArrayList<>();
         ArrayList<Entry> yValse = new ArrayList<>();
@@ -231,56 +217,43 @@ public class Fragment_6 extends Fragment {
         lineChart.getAxisLeft().setEnabled(false);//关闭右边的Y轴，因为默认有两条，左边一条，右边一条，MPAndroidChart中有setEnabled方法的元素基本上都是使能的作用
         lineChart.animateY(3000);//动画效果，MPAndroidChart中还有很多动画效果可以挖掘
     }
-
     class Viewp extends FragmentPagerAdapter {
         public Viewp(FragmentManager fm) {
             super(fm);
         }
-
         @Override
         public Fragment getItem(int position) {
             return list.get(position);
         }
-
         @Override
         public int getCount() {
             return list.size();
         }
     }
-
     class Mypager implements ViewPager.OnPageChangeListener {
-
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
         }
-
         @Override
         public void onPageSelected(int position) {
             int current = viewpager.getCurrentItem();
             switch (current) {
                 case 0:
                     grour.check(R.id.ridebutton1_f6);
-
                     break;
                 case 1:
                     grour.check(R.id.ridebutton2_f6);
-
                     break;
                 case 2:
                     grour.check(R.id.ridebutton3_f6);
-
                     break;
                 case 3:
                     grour.check(R.id.ridebutton4_f6);
                     break;
-
             }
         }
-
         @Override
         public void onPageScrollStateChanged(int state) {
-
         }
     }
 }

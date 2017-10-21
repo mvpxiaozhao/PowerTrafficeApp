@@ -55,6 +55,12 @@ public class Fragment_f6_c3 extends Fragment {
         super.onActivityCreated(savedInstanceState);
         textF6C3 = (TextView) getActivity().findViewById(R.id.text_f6_c3);
         linec3 = (LineChart) getActivity().findViewById(R.id.linec_3);
+        ss = 0;
+        entries = new ArrayList<>();//显示条目
+        linec3.notifyDataSetChanged();
+        linec3.invalidate();
+        linec3.setData(new LineData());
+        linec3.clear();
         handler.postDelayed(rongc3, 1000);
     }
     class Rongc3 implements Runnable {

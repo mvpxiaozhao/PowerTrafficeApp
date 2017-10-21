@@ -43,7 +43,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Fragment_1 extends Fragment {
+public class Fragment_1 extends Fragment implements View.OnClickListener {
     DBAdapter adpter;
     android.support.v4.app.FragmentManager fm;
     TextView textView_chepaihae;
@@ -114,151 +114,6 @@ public class Fragment_1 extends Fragment {
         listCarInfo = (ListView) getActivity().findViewById(R.id.list_car_info);
         adpter = new DBAdapter(getActivity());
         adpter.openDB();
-        initList();
-        buttonPlcz.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog rechargeDialog = new Dialog(getActivity());
-                rechargeDialog.show();
-                rechargeDialog.setTitle("充值窗口");
-                rechargeDialog.getWindow().setContentView(R.layout.car_recharge);
-                textView_chepaihae = (TextView) rechargeDialog.getWindow().findViewById(R.id.textView_chepaihao);
-                textView_chepaihae.setText("全部");
-                final EditText edit_car_recharge = (EditText) rechargeDialog.getWindow().findViewById(R.id.car_recharge);
-                Button save = (Button) rechargeDialog.getWindow().findViewById(R.id.save);
-                final Button cancel = (Button) rechargeDialog.getWindow().findViewById(R.id.cancel);
-                save.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // TODO Auto-generated method stub
-                        String carMoney = edit_car_recharge.getText().toString().trim();
-                        if (carMoney.equals("")) {
-                            Toast.makeText(getActivity(), "输入金额", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        if (Integer.parseInt(carMoney) > 999) {
-                            Toast.makeText(getActivity(), "不能大于999", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        urlHostAction = urlHost + netAction[1];
-                        JSONObject strJson = new JSONObject();
-                        if (che1 == true) {
-                            try {
-                                strJson.put("CarId", 1);
-                                strJson.put("Money", Integer.parseInt(edit_car_recharge.getText().toString()));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            String name = carname[0];
-                            long time = System.currentTimeMillis();
-                            System.currentTimeMillis();
-                            Date date = new Date(time);
-                            SimpleDateFormat format = new SimpleDateFormat("MM月dd日HH时mm分ss秒");
-                            String timee = format.format(date);
-                            String carner = "鲁Q11111";
-                            Carinformation people = new Carinformation(name, carMoney, timee, carner);
-                            adpter.Insert(people);
-                            netFlag = 1;
-                            getAllfffCarValue(urlHostAction, strJson);
-                            rechargeDialog.dismiss();
-                        }
-                        if (che2 == true) {
-                            try {
-                                strJson.put("CarId", 2);
-                                strJson.put("Money", Integer.parseInt(edit_car_recharge.getText().toString()));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            String name = carname[1];
-                            long time = System.currentTimeMillis();
-                            Date date = new Date(time);
-                            SimpleDateFormat format = new SimpleDateFormat("MM月dd日HH时mm分ss秒");
-                            String timee = format.format(date);
-                            String carner = "鲁Q22222";
-                            Carinformation people = new Carinformation(name, carMoney, timee, carner);
-                            adpter.Insert(people);
-                            getAllfffCarValue(urlHostAction, strJson);
-                            rechargeDialog.dismiss();
-                        }
-                        if (che3 == true) {
-                            try {
-                                strJson.put("CarId", 3);
-                                strJson.put("Money", Integer.parseInt(edit_car_recharge.getText().toString()));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            String name = carname[2];
-                            long time = System.currentTimeMillis();
-                            Date date = new Date(time);
-                            SimpleDateFormat format = new SimpleDateFormat("MM月dd日HH时mm分ss秒");
-                            String timee = format.format(date);
-                            String carner = "鲁Q33333";
-                            Carinformation people = new Carinformation(name, carMoney, timee, carner);
-                            adpter.Insert(people);
-                            getAllfffCarValue(urlHostAction, strJson);
-                            rechargeDialog.dismiss();
-                        }
-                        if (che4 == true) {
-                            try {
-                                strJson.put("CarId", 4);
-                                strJson.put("Money", Integer.parseInt(edit_car_recharge.getText().toString()));
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            String name = carname[3];
-                            long time = System.currentTimeMillis();
-                            Date date = new Date(time);
-                            SimpleDateFormat format = new SimpleDateFormat("MM月dd日HH时mm分ss秒");
-                            String timee = format.format(date);
-                            String carner = "鲁Q44444";
-                            Carinformation people = new Carinformation(name, carMoney, timee, carner);
-                            adpter.Insert(people);
-                            netFlag = 1;
-                            getAllfffCarValue(urlHostAction, strJson);
-                            rechargeDialog.dismiss();
-                        }
-                        new Handler().postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                fm = getActivity().getSupportFragmentManager();
-                                fm.beginTransaction().replace(R.id.maincontent, new Fragment_1()).commit();
-                            }
-                        }, 2000);
-                    }
-                });
-                cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        // TODO Auto-generated method stub
-                        rechargeDialog.dismiss();
-                    }
-                });
-                rechargeDialog.show();
-            }
-        });
-        buttonCzjl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Dialog czju = new Dialog(getActivity());
-                czju.setTitle("充值记录");
-                czju.getWindow().setContentView(R.layout.fragment_1_layout_czjl);
-                TextView tsss = (TextView) czju.getWindow().findViewById(R.id.s1_czjl);
-                Carinformation[] peoplese = adpter.qurryAll();
-                if (peoplese == null) {
-                    tsss.setText("对不起，没有充值信息");
-                } else {
-                    String result = "";
-                    for (int i = 0; i < peoplese.length; i++) {
-                        result = result + peoplese[i].showInfo();
-                    }
-                    tsss.setText(result);
-                }
-                czju.show();
-            }
-        });
-    }
-
-    private void initList() {
         carCurrent = 1;
         arrayListItem = new ArrayList<Map<String, Object>>();
         urlHostAction = urlHost + netAction[0];
@@ -269,9 +124,11 @@ public class Fragment_1 extends Fragment {
             e.printStackTrace();
         }
         netFlag = 0;
+        Log.i("asasdasd", urlHostAction + strJson);
         getAllCarValue(urlHostAction, strJson);
+        buttonPlcz.setOnClickListener(this);
+        buttonCzjl.setOnClickListener(this);
     }
-
 
     private void getAllCarValue(String urlHostAction, JSONObject params) {
         RequestQueue mQueue = Volley.newRequestQueue(getContext());
@@ -284,9 +141,10 @@ public class Fragment_1 extends Fragment {
                 if (netFlag == 0) {
                     parseBalanceData(str);
                 } else if (netFlag == 1) {
-                    Toast.makeText(getContext(), "充值成功", Toast.LENGTH_SHORT).show();
                     fm = getActivity().getSupportFragmentManager();
                     fm.beginTransaction().replace(R.id.maincontent, new Fragment_1()).commit();
+                } else if (netFlag == 3) {
+                    Toast.makeText(getContext(), "充值成功", Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
@@ -294,26 +152,8 @@ public class Fragment_1 extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 // TODO Auto-generated method stub
                 Toast.makeText(getContext(), "失败", Toast.LENGTH_SHORT).show();
-                Log.i("TAG volley", error.toString());
+                Log.i("gdfgdfg", error.toString());
 
-            }
-        });
-        mQueue.add(jsonObjectRequest);
-    }
-
-    private void getAllfffCarValue(String urlHostAction, JSONObject params) {
-        RequestQueue mQueue = Volley.newRequestQueue(getContext());
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, urlHostAction, params, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                // TODO Auto-generated method stu
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // TODO Auto-generated method stub
-                Toast.makeText(getContext(), "失败", Toast.LENGTH_SHORT).show();
-                Log.i("TAG volley", error.toString());
             }
         });
         mQueue.add(jsonObjectRequest);
@@ -323,7 +163,6 @@ public class Fragment_1 extends Fragment {
      * @param balanceData
      */
     private void parseBalanceData(String balanceData) {              //Json解析
-        String str = null;
         try {
             JSONObject jsonObj = new JSONObject(balanceData);
             String wer = jsonObj.optString("serverinfo");
@@ -337,12 +176,16 @@ public class Fragment_1 extends Fragment {
             map.put("balance", sdf);    //余额
             map.put("chongzhi", false);      //车号
             arrayListItem.add(map);
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            Log.v("zms", "e:" + e.toString());
+            e.printStackTrace();
+        }
             carCurrent = carCurrent + 1;
             if (carCurrent <= carCount) {
                 JSONObject strJson = new JSONObject();
                 try {
                     strJson.put("CarId", carCurrent);
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -354,11 +197,7 @@ public class Fragment_1 extends Fragment {
                 listCarInfo.setAdapter(contentAdapter);
 
             }
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            Log.v("zms", "e:" + e.toString());
-            e.printStackTrace();
-        }
+
     }
 
     public void reChange(final int position) {
@@ -414,5 +253,94 @@ public class Fragment_1 extends Fragment {
             }
         });
         rechargeDialog.show();
+    }
+
+    public void Sql(int idd, int Money) {
+        JSONObject strJson = new JSONObject();
+        try {
+            strJson.put("CarId", idd);
+            strJson.put("Money", Money);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        String name = carname[idd - 1];
+        long time = System.currentTimeMillis();
+        System.currentTimeMillis();
+        Date date = new Date(time);
+        SimpleDateFormat format = new SimpleDateFormat("MM月dd日HH时mm分ss秒");
+        String timee = format.format(date);
+        String carner = "鲁Q12345" + idd;
+        String Moneii = String.valueOf(Money);
+        Carinformation people = new Carinformation(name, Moneii, timee, carner);
+        adpter.Insert(people);
+        netFlag = 3;
+        getAllCarValue(urlHostAction, strJson);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button_plcz:
+                final Dialog rechargeDialog = new Dialog(getActivity());
+                rechargeDialog.show();
+                rechargeDialog.setTitle("充值窗口");
+                rechargeDialog.getWindow().setContentView(R.layout.car_recharge);
+                textView_chepaihae = (TextView) rechargeDialog.getWindow().findViewById(R.id.textView_chepaihao);
+                textView_chepaihae.setText("全部");
+                final EditText edit_car_recharge = (EditText) rechargeDialog.getWindow().findViewById(R.id.car_recharge);
+                Button save = (Button) rechargeDialog.getWindow().findViewById(R.id.save);
+                final Button cancel = (Button) rechargeDialog.getWindow().findViewById(R.id.cancel);
+                save.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+                        String carMoney = edit_car_recharge.getText().toString().trim();
+                        if (carMoney.equals("")) {
+                            Toast.makeText(getActivity(), "输入金额", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        if (Integer.parseInt(carMoney) > 999) {
+                            Toast.makeText(getActivity(), "不能大于999", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        urlHostAction = urlHost + netAction[1];
+                        int ddd = Integer.parseInt(edit_car_recharge.getText().toString());
+                        if (che1 == true) {
+                            Sql(1, ddd);
+                            rechargeDialog.dismiss();
+                        }
+                        if (che2 == true) {
+                            Sql(2, ddd);
+                            rechargeDialog.dismiss();
+                        }
+                        if (che3 == true) {
+                            Sql(3, ddd);
+                            rechargeDialog.dismiss();
+                        }
+                        if (che4 == true) {
+                            Sql(4, ddd);
+                            rechargeDialog.dismiss();
+                        }
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                fm = getActivity().getSupportFragmentManager();
+                                fm.beginTransaction().replace(R.id.maincontent, new Fragment_1()).commit();
+                            }
+                        }, 2000);
+                    }
+                });
+                cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // TODO Auto-generated method stub
+                        rechargeDialog.dismiss();
+                    }
+                });
+                rechargeDialog.show();
+                break;
+            case R.id.button_czjl:
+                break;
+        }
     }
 }

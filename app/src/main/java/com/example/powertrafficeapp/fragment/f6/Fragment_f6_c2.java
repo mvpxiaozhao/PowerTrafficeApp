@@ -40,7 +40,7 @@ public class Fragment_f6_c2 extends Fragment {
     ArrayList<Integer> intyy = new ArrayList<>();//横坐标标签
     ArrayList<String> xVals = new ArrayList<>();//横坐标标签
     ArrayList<Entry> entries = new ArrayList<>();//显示条目
-    int ss = 0;
+    int ss;
     private TextView textF6C2;
     private LineChart linec2;
 
@@ -55,6 +55,12 @@ public class Fragment_f6_c2 extends Fragment {
         super.onActivityCreated(savedInstanceState);
         textF6C2 = (TextView) getActivity().findViewById(R.id.text_f6_c2);
         linec2 = (LineChart) getActivity().findViewById(R.id.linec_2);
+        ss = 0;
+        entries = new ArrayList<>();//显示条目
+        linec2.notifyDataSetChanged();
+        linec2.invalidate();
+        linec2.setData(new LineData());
+        linec2.clear();
         handler.postDelayed(rongc2, 1000);
     }
 
