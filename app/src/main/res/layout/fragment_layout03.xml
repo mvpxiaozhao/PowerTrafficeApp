@@ -49,9 +49,10 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
 
-        <HorizontalScrollView
-            android:id="@+id/sdsadfsdas"
+        <LinearLayout
+            android:id="@+id/Ralativeerrrddroe"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></HorizontalScrollView>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"></LinearLayout>
     </ScrollView>
 </LinearLayout>

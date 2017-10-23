@@ -51,7 +51,6 @@ public class Fragment_1 extends Fragment implements View.OnClickListener {
     boolean che2 = false;
     boolean che3 = false;
     boolean che4 = false;
-    Util util;
     String chepaihao;
     //车辆数量
     int carCount = 4;
@@ -307,20 +306,18 @@ public class Fragment_1 extends Fragment implements View.OnClickListener {
                         int ddd = Integer.parseInt(edit_car_recharge.getText().toString());
                         if (che1 == true) {
                             Sql(1, ddd);
-                            rechargeDialog.dismiss();
                         }
                         if (che2 == true) {
                             Sql(2, ddd);
-                            rechargeDialog.dismiss();
                         }
                         if (che3 == true) {
                             Sql(3, ddd);
-                            rechargeDialog.dismiss();
                         }
                         if (che4 == true) {
                             Sql(4, ddd);
-                            rechargeDialog.dismiss();
+
                         }
+                        rechargeDialog.dismiss();
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {

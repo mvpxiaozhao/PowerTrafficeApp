@@ -69,60 +69,6 @@ public class Fragment_2 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_layout02, container, false);
         return view;
     }
-
-    @Override
-    public void onAttach(Context context) {
-        Log.i("asasdasd", "onAttach");
-        super.onAttach(context);
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.i("asasdasd", "onCreate");
-        super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public void onStart() {
-        Log.i("asasdasd", "onStart");
-        super.onStart();
-    }
-
-    @Override
-    public void onPause() {
-        Log.i("asasdasd", "onPause");
-        super.onPause();
-    }
-
-    @Override
-    public void onResume() {
-        Log.i("asasdasd", "onResume");
-        super.onResume();
-    }
-
-    @Override
-    public void onStop() {
-        Log.i("asasdasd", "onStop");
-        super.onStop();
-    }
-
-    @Override
-    public void onDestroy() {
-        Log.i("asasdasd", "onDestroy");
-        super.onDestroy();
-    }
-
-    @Override
-    public void onDestroyView() {
-        Log.i("asasdasd", "onDestroyView");
-        super.onDestroyView();
-    }
-
-    @Override
-    public void onDetach() {
-        Log.i("asasdasd", "onDetach");
-        super.onDetach();
-    }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -307,7 +253,6 @@ public class Fragment_2 extends Fragment {
         sdf = new Listadpter(getContext());
         mF2Expandable.setAdapter(sdf);
         mF2Expandable.setGroupIndicator(null);//不设置大组指示器图标，因为我们自定义设置了
-        mF2Expandable.setDivider(null);//设置图片可拉伸的
     }
     class Listadpter extends BaseExpandableListAdapter {
         Context context;
@@ -321,7 +266,6 @@ public class Fragment_2 extends Fragment {
             if (view == null) {
                 LayoutInflater inflater = LayoutInflater.from(getActivity());
                 view = inflater.inflate(R.layout.list_f2_groud, null);
-//			getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
             }
             ImageView imageViewListGount = (ImageView) view.findViewById(R.id.imageView_List_gount);
             TextView textViewListGount = (TextView) view.findViewById(R.id.textView_List_gount);

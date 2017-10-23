@@ -5,7 +5,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBAdapter {
@@ -24,15 +23,12 @@ public class DBAdapter {
         context = _context;
     }
 
-    public void openDB() throws SQLiteException {
+    public void openDB() {
         dbOpenHelper = new DBOpenHelper(context, DB_NAME, null, DB_VERSION);
-        try {
             db = dbOpenHelper.getWritableDatabase();
-        } catch (SQLiteException ex) {
             db = dbOpenHelper.getReadableDatabase();
-        }
-    }
 
+    }
     public long Insert(Carinformation people) {
         ContentValues newValue = new ContentValues();
         newValue.put(KEY_NAME, people.Name);
@@ -86,9 +82,7 @@ public class DBAdapter {
             cursor.moveToNext();
         }
         return peoples;
-
     }
-
     private static class DBOpenHelper extends SQLiteOpenHelper {
         private static final String DB_CREATE = "create table " + DB_TABLE + "(" + KEY_ID + " integer primary key autoincrement, "
                 + KEY_NAME + " text not null, " + KEY_PHONE_NUMBER + " text," + KEY_ADDRESS + " text," + KEY_E_MAIL + " text);";
@@ -97,13 +91,11 @@ public class DBAdapter {
             super(context, name, factory, version);
             // TODO Auto-generated constructor stub
         }
-
         @Override
         public void onCreate(SQLiteDatabase arg0) {
             // TODO Auto-generated method stub
             arg0.execSQL(DB_CREATE);
         }
-
         @Override
         public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
             // TODO Auto-generated method stub

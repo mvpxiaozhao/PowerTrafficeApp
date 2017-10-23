@@ -22,7 +22,6 @@ public class Fragment_4 extends Fragment {
     private TextView textView4;
     private EditText editText;
     private Button button;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
